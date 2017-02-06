@@ -20,7 +20,7 @@ Observable.create(new Observable.OnSubscribe&amp;lt;String&amp;gt;() {">
 <meta property="og:image" content="http://static.zybuluo.com/maplejaw/9w3o5vxc0lzznbrpn4vwa78w/image_1argbe0o1atfqtbrj51gu0jho9.png">
 <meta property="og:image" content="http://static.zybuluo.com/maplejaw/791vkq1lxpl2etqaql85a6e8/image_1argbhutoi1a1b6a18s9il6npvm.png">
 <meta property="og:image" content="http://static.zybuluo.com/maplejaw/xqw7fto75revvct4zu3d56a5/image_1argc0tbetbj1rkj1etf4fcb1p13.png">
-<meta property="og:updated_time" content="2017-02-06T11:54:35.000Z">
+<meta property="og:updated_time" content="2017-02-06T11:56:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rxjava操作符大全">
 <meta name="twitter:description" content="创建操作以下操作符用于创建Observable。create： 使用OnSubscribe从头创建一个Observable，这种方法比较简单。需要注意的是，使用该方法创建时，建议在OnSubscribe#call方法中检查订阅状态，以便及时停止发射数据或者运算。
@@ -63,9 +63,9 @@ Observable.create(new Observable.OnSubscribe&amp;lt;String&amp;gt;() {">
       </nav>
       <nav id="sub-nav">
         
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="Flux RSS"></a>
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
         
-        <a id="nav-search-btn" class="nav-icon" title="Rechercher"></a>
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
       </nav>
       <div id="search-form-wrap">
         <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
@@ -150,8 +150,7 @@ Observable observable3=Observable.never();//啥都不做
 <p> Observable.range(2,5).subscribe(new Action1<integer>() {<br>        @Override<br>        public void call(Integer integer) {<br>            Log.d(“JG”,integer.toString());// 2,3,4,5,6 从2开始发射5个数据<br>        }<br>    });</integer></p>
 <p>defer： 只有当订阅者订阅才创建Observable，为每个订阅创建一个新的Observable。内部通过OnSubscribeDefer在订阅时调用Func0创建Observable。</p>
 <p>  Observable.defer(new Func0<observable<string>&gt;() {<br>        @Override<br>        public Observable<string> call() {<br>            return Observable.just(“hello”);<br>        }<br>    }).subscribe(new Action1<string>() {<br>        @Override<br>        public void call(String s) {<br>            Log.d(“JG”,s);<br>        }<br>    });</string></string></observable<string></p>
-<p>##合并操作</p>
-<p>以下操作符用于组合多个Observable。</p>
+<h2 id="合并操作"><a href="#合并操作" class="headerlink" title="合并操作"></a>合并操作</h2><p>以下操作符用于组合多个Observable。</p>
 <p>注意，为了使结构更加清晰以及缩小代码量，之后的例子部分地方将会使用Lambda表达式书写，如果你对Lambda表达式不太熟悉的话，可以阅读JAVA8 Lambda表达式完全解析这篇文章。<br>concat： 按顺序连接多个Observables。需要注意的是Observable.concat(a,b)等价于a.concatWith(b)。</p>
 <pre><code>Observable&lt;Integer&gt; observable1=Observable.just(1,2,3,4);
 Observable&lt;Integer&gt;  observable2=Observable.just(4,5,6);
@@ -172,8 +171,7 @@ Observable.concat(observable1,observable2)
 .subscribe(item-&gt;Log.d(&quot;JG&quot;,item)); //1and4,2and5,3and6
 </code></pre><p>combineLatest： 。当两个Observables中的任何一个发射了一个数据时，通过一个指定的函数组合每个Observable发射的最新数据（一共两个数据），然后发射这个函数的结果。类似于zip，但是，不同的是zip只有在每个Observable都发射了数据才工作，而combineLatest任何一个发射了数据都可以工作，每次与另一个Observable最近的数据压合。具体请看下面流程图。<br>zip工作流程<br><img src="http://static.zybuluo.com/maplejaw/bu67z13p279yu074arzslsyd/image_1ard6160913ui3r6orodc41pntm.png" alt="Markdown preferences pane"></p>
 <p>combineLatest工作流程<br><img src="http://static.zybuluo.com/maplejaw/tuo7jn6ijtzsa1c3ak77umtu/image_1ard609fsi3p9n7160iq0r1rqe9.png" alt="Markdown preferences pane"></p>
-<p>##过滤操作</p>
-<p>filter： 过滤数据。内部通过OnSubscribeFilter过滤数据。</p>
+<h2 id="过滤操作"><a href="#过滤操作" class="headerlink" title="过滤操作"></a>过滤操作</h2><p>filter： 过滤数据。内部通过OnSubscribeFilter过滤数据。</p>
 <p>  Observable.just(3,4,5,6)<br>            .filter(new Func1<integer, boolean="">() {<br>                @Override<br>                public Boolean call(Integer integer) {<br>                    return integer&gt;4;<br>                }<br>            })<br>    .subscribe(item-&gt;Log.d(“JG”,item.toString())); //5,6 </integer,></p>
 <p>ofType： 过滤指定类型的数据，与filter类似，</p>
 <p>Observable.just(1,2,”3”)<br>            .ofType(Integer.class)<br>            .subscribe(item -&gt; Log.d(“JG”,item.toString()));</p>
@@ -313,8 +311,7 @@ Observable.amb(observable1,observable2)
     }
 });
 </code></pre><p>count/countLong： 计算发射的数量，内部调用的是reduce.</p>
-<p>##转换操作</p>
-<p>toList： 收集原始Observable发射的所有数据到一个列表，然后返回这个列表.</p>
+<h2 id="转换操作"><a href="#转换操作" class="headerlink" title="转换操作"></a>转换操作</h2><p>toList： 收集原始Observable发射的所有数据到一个列表，然后返回这个列表.</p>
 <pre><code>Observable.just(2,3,4,5)
         .toList()
         .subscribe(new Action1&lt;List&lt;Integer&gt;&gt;() {
@@ -344,8 +341,7 @@ Observable.amb(observable1,observable2)
     }
 });
 </code></pre><p>toMultiMap： 类似于toMap，不同的地方在于map的value是一个集合。</p>
-<p>##变换操作</p>
-<p>map： 对Observable发射的每一项数据都应用一个函数来变换。</p>
+<h2 id="变换操作"><a href="#变换操作" class="headerlink" title="变换操作"></a>变换操作</h2><p>map： 对Observable发射的每一项数据都应用一个函数来变换。</p>
 <p> Observable.just(6,2,3,4,5)<br>            .map(integer -&gt; “item:”+integer)<br>            .subscribe(s -&gt; Log.d(“JG”,s));//item:6,item:2….</p>
 <p>cast： 在发射之前强制将Observable发射的所有数据转换为指定类型<br>flatMap： 将Observable发射的数据变换为Observables集合，然后将这些Observable发射的数据平坦化的放进一个单独的Observable，内部采用merge合并。</p>
 <pre><code>   Observable.just(2,3,5)
@@ -441,15 +437,13 @@ Observable.amb(observable1,observable2)
 ;//1,1,1,1,onError
 </code></pre><p>retryWhen： 当原始Observable在遇到错误，将错误传递给另一个Observable来决定是否要重新订阅这个Observable,内部调用的是retry。</p>
 <p>  Observable.just(1,”2”,3)<br>    .cast(Integer.class)<br>    .retryWhen(new Func1<observable<? extends="" throwable="">, Observable<long>&gt;() {<br>        @Override<br>        public Observable<long> call(Observable&lt;? extends Throwable&gt; observable) {<br>            return Observable.timer(1, TimeUnit.SECONDS);<br>        }<br>    })<br>    .subscribe(integer -&gt; Log.d(“JG”,integer.toString()),throwable -&gt; Log.d(“JG”,”onError”));<br>    //1,1</long></long></observable<?></p>
-<p>##连接操作</p>
-<p>ConnectableObservable与普通的Observable差不多，但是可连接的Observable在被订阅时并不开始发射数据，只有在它的connect()被调用时才开始。用这种方法，你可以等所有的潜在订阅者都订阅了这个Observable之后才开始发射数据。<br>ConnectableObservable.connect()指示一个可连接的Observable开始发射数据.<br>Observable.publish()将一个Observable转换为一个可连接的Observable<br>Observable.replay()确保所有的订阅者看到相同的数据序列的ConnectableObservable，即使它们在Observable开始发射数据之后才订阅。<br>ConnectableObservable.refCount()让一个可连接的Observable表现得像一个普通的Observable。</p>
+<h2 id="连接操作"><a href="#连接操作" class="headerlink" title="连接操作"></a>连接操作</h2><p>ConnectableObservable与普通的Observable差不多，但是可连接的Observable在被订阅时并不开始发射数据，只有在它的connect()被调用时才开始。用这种方法，你可以等所有的潜在订阅者都订阅了这个Observable之后才开始发射数据。<br>ConnectableObservable.connect()指示一个可连接的Observable开始发射数据.<br>Observable.publish()将一个Observable转换为一个可连接的Observable<br>Observable.replay()确保所有的订阅者看到相同的数据序列的ConnectableObservable，即使它们在Observable开始发射数据之后才订阅。<br>ConnectableObservable.refCount()让一个可连接的Observable表现得像一个普通的Observable。</p>
 <pre><code>ConnectableObservable&lt;Integer&gt; co= Observable.just(1,2,3)
          .publish();
 
  co .subscribe(integer -&gt; Log.d(&quot;JG&quot;,integer.toString()) );
  co.connect();//此时开始发射数据
-</code></pre><p>##阻塞操作</p>
-<p>BlockingObservable是一个阻塞的Observable。普通的Observable 转换为 BlockingObservable，可以使用 Observable.toBlocking( )方法或者BlockingObservable.from( )方法。内部通过CountDownLatch实现了阻塞操作。</p>
+</code></pre><h2 id="阻塞操作"><a href="#阻塞操作" class="headerlink" title="阻塞操作"></a>阻塞操作</h2><p>BlockingObservable是一个阻塞的Observable。普通的Observable 转换为 BlockingObservable，可以使用 Observable.toBlocking( )方法或者BlockingObservable.from( )方法。内部通过CountDownLatch实现了阻塞操作。</p>
 <p>以下的操作符可以用于BlockingObservable，如果是普通的Observable，务必使用Observable.toBlocking()转为阻塞Observable后使用，否则达不到预期的效果。</p>
 <p>forEach： 对BlockingObservable发射的每一项数据调用一个方法，会阻塞直到Observable完成。</p>
 <p>Observable.just(2,3).observeOn(Schedulers.newThread()).toBlocking()<br>          .forEach(integer -&gt; {<br>              Log.d(“JG”,integer.toString()+” “+Thread.currentThread().getName());<br>              Utils.sleep(500);<br>          });</p>
@@ -505,7 +499,7 @@ Observable.amb(observable1,observable2)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2017/02/06/Rxjava操作符大全/" data-id="ciyu1j7qs0001p8gytcjf8mfn" class="article-share-link">Partager</a>
+      <a data-url="http://yoursite.com/2017/02/06/Rxjava操作符大全/" data-id="ciyu1lmow0000q3gyssanms3l" class="article-share-link">Share</a>
       
       
     </footer>
@@ -516,7 +510,7 @@ Observable.amb(observable1,observable2)
   
   
     <a href="/2017/02/06/hello-world/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Ancien</strong>
+      <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">Hello World</div>
     </a>
   
@@ -549,7 +543,7 @@ Observable.amb(observable1,observable2)
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Articles récents</h3>
+    <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
         
@@ -574,7 +568,7 @@ Observable.amb(observable1,observable2)
   <div class="outer">
     <div id="footer-info" class="inner">
       &copy; 2017 John Doe<br>
-      Propulsé by <a href="http://hexo.io/" target="_blank">Hexo</a>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
 </footer>

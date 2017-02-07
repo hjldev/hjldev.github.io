@@ -97,9 +97,9 @@ Activity的生命周期的总结，以及注意的细节先来个图
 
 典型情况下的生命周期的分析Activity的常用生命周期我们不做讨论，一个Activity从创建到结束的基本回调为：onCreate-&amp;gt;onStart-&amp;gt;onResume-&amp;gt;onPause-&amp;gt">
 <meta property="og:image" content="http://hi.csdn.net/attachment/201109/1/0_1314838777He6C.gif">
-<meta property="og:image" content="http://yoursite.com/Users/fastabler/Desktop/myblog/public/images/taskstack1.png">
-<meta property="og:image" content="http://yoursite.com/Users/fastabler/Desktop/myblog/public/images/taskstack2.png">
-<meta property="og:updated_time" content="2017-02-07T08:13:46.000Z">
+<meta property="og:image" content="http://okzxn9yra.bkt.clouddn.com/taskstack1.png">
+<meta property="og:image" content="http://okzxn9yra.bkt.clouddn.com/taskstack2.png">
+<meta property="og:updated_time" content="2017-02-07T08:44:25.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Activity的生命周期和启动模式的总结">
 <meta name="twitter:description" content="Activity毫无疑问是Android中最重要的组件之一了，做好一个android程序，首先就得要hold住他的生命周期。
@@ -373,7 +373,7 @@ Activity的生命周期的总结，以及注意的细节先来个图
 <li>singleTask：栈内复用模式。这是一种单实例模式，即当新的Activity存在于栈中，新的Activity会把其之上的Activity全部清除，让自己成为栈顶，并且栈中只会有一个相同的实例。</li>
 <li>singleInstance：单实例模式。这其实是singleTask模式的加强版，即具有此模式的新的Activity会单独的位于一个任务栈中。</li>
 </ol>
-<p>上面介绍的几种启动模式，我们假设目前有两个任务栈，前台任务栈A、B，后台任务栈C、D。当我们从B启动D的时候，会拉起整个后台任务栈，即C、D，当点击back键会先返回到C，再点击返回到B。当从B启动C的时候，D不会跟着拉起来。用图解释可能会更加易懂：<br><img src="/Users/fastabler/Desktop/myblog/public/images/taskstack1.png" alt="任务栈图"><br><img src="/Users/fastabler/Desktop/myblog/public/images/taskstack2.png" alt="任务栈图"></p>
+<p>上面介绍的几种启动模式，我们假设目前有两个任务栈，前台任务栈A、B，后台任务栈C、D。当我们从B启动D的时候，会拉起整个后台任务栈，即C、D，当点击back键会先返回到C，再点击返回到B。当从B启动C的时候，D不会跟着拉起来。用图解释可能会更加易懂：<br><img src="http://okzxn9yra.bkt.clouddn.com/taskstack1.png" alt="任务栈图"><br><img src="http://okzxn9yra.bkt.clouddn.com/taskstack2.png" alt="任务栈图"></p>
 <h3 id="Activity的Flags"><a href="#Activity的Flags" class="headerlink" title="Activity的Flags"></a>Activity的Flags</h3><p>Activity的Flags有很多，这里主要介绍几个比较常见的标记位。标记位的作用很多，有的标记可以设置Activity的启动模式，有的标记位可以影响Activity的运行状态，还有的标记位可以设置视图的显示。大部分情况下我们不需要为Activity设置标记位。</p>
 <ul>
 <li>FLAG_ACTIVITY_NEW_TASK：这个标记为的作用是指定“singleTask”启动模式，其效果和在manifest设置效果相同</li>

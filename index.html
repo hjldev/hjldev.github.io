@@ -345,14 +345,14 @@
 <h2 id="使用属性动画"><a href="#使用属性动画" class="headerlink" title="使用属性动画"></a>使用属性动画</h2><p>属性动画可以对任意的对象属性进行动画而不仅仅是View，<strong>动画默认的时间为300ms</strong>，默认帧率为10ms／帧。其可以达到的效果是在一个时间间隔内完成对象从一个属性值到另一个属性值到改变。因此属性动画几乎无所不能。因为现在android版本都在4.0以上，所以我们不用考虑API 11以下手机。</p>
 <ul>
 <li>例如我们想改变一个对象的translationY的属性，让其沿着Y轴向上平移一段距离：它的高度。该动画在默认时间内完成，动画的完成时间是可以定义的。想要更灵活的效果我们还可以定义插值器和估值算法，但是一般我们不需要自定义，系统已经预置了一些，能够满足常用动画</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ObjectAnimator.ofFloat(myObject, &quot;translationY&quot;, -myObject.getHeight()).start();</div></pre></td></tr></table></figure>
-</li>
-<li><p>改变一个对象的背景色属性，典型的情形是改变View的背景色，下面的动画可以让View在3s内实现从0xFFFF8080到0xFF8080FF的渐变，动画会无限循环且会有反转的效果</p>
-</li>
-<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ValueAnimator colorAnim = ObjectAnimator.ofInt(this, &quot;backgroundColor&quot;,0xFFFF8080, 0xFF8080FF);</div><div class="line">colorAnim.setDuration(3000);</div><div class="line">colorAnim.setEvaluator(new ArgbEvaluator());</div><div class="line">colorAnim.setRepeatCount(ValueAnimator.INFINITE);</div><div class="line">colorAnim.setRepeatMode(ValueAnimator.REVERSE);</div><div class="line">colorAnim.start();</div></pre></td></tr></table></figure>
-</li>
-<li><p>动画集合，5s内对View的旋转、平移、缩放和透明度都进行了改变</p>
-</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ObjectAnimator.ofFloat(myObject, &quot;translationY&quot;, -myObject.getHeight()).start();</div></pre></td></tr></table></figure>
+<ul>
+<li>改变一个对象的背景色属性，典型的情形是改变View的背景色，下面的动画可以让View在3s内实现从0xFFFF8080到0xFF8080FF的渐变，动画会无限循环且会有反转的效果</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">ValueAnimator colorAnim = ObjectAnimator.ofInt(this, &quot;backgroundColor&quot;,0xFFFF8080, 0xFF8080FF);</div><div class="line">colorAnim.setDuration(3000);</div><div class="line">colorAnim.setEvaluator(new ArgbEvaluator());</div><div class="line">colorAnim.setRepeatCount(ValueAnimator.INFINITE);</div><div class="line">colorAnim.setRepeatMode(ValueAnimator.REVERSE);</div><div class="line">colorAnim.start();</div></pre></td></tr></table></figure>
+<ul>
+<li>动画集合，5s内对View的旋转、平移、缩放和透明度都进行了改变</li>
 </ul>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">AnimatorSet set = new AnimatorSet();</div><div class="line">set.playTogether(ObjectAnimator.ofFloat(myView, &quot;rotationX&quot;, 0, 360),</div><div class="line">	ObjectAnimator.ofFloat(myView, &quot;rotationY&quot;, 0, 180),</div><div class="line">	ObjectAnimator.ofFloat(myView, &quot;rotation&quot;, 0, -90),</div><div class="line">	ObjectAnimator.ofFloat(myView, &quot;translationX&quot;, 0, 90),</div><div class="line">	ObjectAnimator.ofFloat(myView, &quot;translationY&quot;, 0, 90),</div><div class="line">	ObjectAnimator.ofFloat(myView, &quot;scaleX&quot;, 1, 1.5f),</div><div class="line">	ObjectAnimator.ofFloat(myView, &quot;scaleX&quot;, 1, 0.5f),</div><div class="line">	ObjectAnimator.ofFloat(myView, &quot;alpha&quot;, 1, 0.25, 1),);</div><div class="line">set.setDuration(5 * 1000).start();</div></pre></td></tr></table></figure>
 <p>属性动画在XML定义就不在多讲，因为它不如直接在代码中写起来方便，当然如果多个对象使用同一个动画，写在XML里面更好。</p>
@@ -368,91 +368,26 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">/**	</div><div class="line">    * &lt;p&gt;An animation listener receives notifications from an animation.</div><div class="line">    * Notifications indicate animation related events, such as the end or the</div><div class="line">    * repetition of the animation.&lt;/p&gt;</div><div class="line">    */</div><div class="line">   public static interface AnimatorListener &#123;</div><div class="line">       /**</div><div class="line">        * &lt;p&gt;Notifies the start of the animation.&lt;/p&gt;</div><div class="line">        *</div><div class="line">        * @param animation The started animation.</div><div class="line">        */</div><div class="line">       void onAnimationStart(Animator animation);</div><div class="line"></div><div class="line">       /**</div><div class="line">        * &lt;p&gt;Notifies the end of the animation. This callback is not invoked</div><div class="line">        * for animations with repeat count set to INFINITE.&lt;/p&gt;</div><div class="line">        *</div><div class="line">        * @param animation The animation which reached its end.</div><div class="line">        */</div><div class="line">       void onAnimationEnd(Animator animation);</div><div class="line"></div><div class="line">       /**</div><div class="line">        * &lt;p&gt;Notifies the cancellation of the animation. This callback is not invoked</div><div class="line">        * for animations with repeat count set to INFINITE.&lt;/p&gt;</div><div class="line">        *</div><div class="line">        * @param animation The animation which was canceled.</div><div class="line">        */</div><div class="line">       void onAnimationCancel(Animator animation);</div><div class="line"></div><div class="line">       /**</div><div class="line">        * &lt;p&gt;Notifies the repetition of the animation.&lt;/p&gt;</div><div class="line">        *</div><div class="line">        * @param animation The animation which was repeated.</div><div class="line">        */</div><div class="line">       void onAnimationRepeat(Animator animation);</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 <p>AnimatorUpdateListener的定义</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">     * Implementors of this interface can add themselves as update listeners</div><div class="line">     * to an &lt;code&gt;ValueAnimator&lt;/code&gt; instance to receive callbacks on every animation</div><div class="line">     * frame, after the current frame&apos;s values have been calculated for that</div><div class="line">     * &lt;code&gt;ValueAnimator&lt;/code&gt;.</div><div class="line">     */</div><div class="line">    public static interface AnimatorUpdateListener &#123;</div><div class="line">        /**</div><div class="line">         * &lt;p&gt;Notifies the occurrence of another frame of the animation.&lt;/p&gt;</div><div class="line">         *</div><div class="line">         * @param animation The animation which was repeated.</div><div class="line">         */</div><div class="line">        void onAnimationUpdate(ValueAnimator animation);</div><div class="line"></div><div class="line">    &#125;</div></pre></td></tr></table></figure>
-<h2 id="对任意属性做动画"><a href="#对任意属性做动画" class="headerlink" title="对任意属性做动画"></a>对任意属性做动画</h2><p>比如我们用属性动画对Button做宽度的增加，会首先想到<br><figure class="highlight plain"><figcaption><span>"width", 500).setDuration(5000).start();```</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">上述代码运行后会发现没有效果，其实没有效果是正常现象，因为如果随便传一个属性（例如width）轻则没有动画效果，重则程序直接crash。</div><div class="line">下面分析属性动画的原理：**属性动画要求动画的作用对象提供该属性的get和set方法，属性动画根据该属性的初始值和最终值，以动画的效果多次去调用set方法，每次传递给set方法等值都不一样，确切的来说是随着时间的推移，所传递的值越来越接近最终值**</div><div class="line"></div><div class="line">1. 作用对象必须提供该属性的get和set方法</div><div class="line">2. 作用对象的set方法必须要能使UI效果改变，否则动画无效果</div><div class="line"></div><div class="line">那么为什么我们对Button的width属性做动画会没有效果呢？这是因为虽然Button内部提供了getWidth和setWidth方法，但是这个setWidth方法并不是改变视图的大小，它是TextView新添加的方法，View是没有setWidth这个方法的。由于Button继承TextView，所以Button有setWidth方法，来看一下setWidth和getWidth方法的实现：</div></pre></td></tr></table></figure></p>
-<p>/**</p>
-<pre><code> * Makes the TextView exactly this many pixels wide.
- * You could do the same thing by specifying this number in the
- * LayoutParams.
- *
- * @see #setMaxWidth(int)
- * @see #setMinWidth(int)
- * @see #getMinWidth()
- * @see #getMaxWidth()
- *
- * @attr ref android.R.styleable#TextView_width
- */
-@android.view.RemotableViewMethod
-public void setWidth(int pixels) {
-    mMaxWidth = mMinWidth = pixels;
-    mMaxWidthMode = mMinWidthMode = PIXELS;
-
-    requestLayout();
-    invalidate();
-}
-
-/**
- * Return the width of the your view.
- *
- * @return The width of your view, in pixels.
- */
-@ViewDebug.ExportedProperty(category = &quot;layout&quot;)
-public final int getWidth() {
-    return mRight - mLeft;
-}
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">从上述源码中可以看出，getWidth的确是获取View的宽度，而setWidth是TextView和其子类的专属方法，它的作用不是设置宽度，而是设置最大宽度和最小宽度的。具体来说在布局XML中android:layout_width对应宽度，android:width对应最大最小宽度。所以setWidth无法改变控件的宽度。</div><div class="line">针对上述问题，官方告诉我们有三种解决方法</div><div class="line"></div><div class="line">* 给你的对象加上set和get方法，如果你有权限的话</div><div class="line">* 用一个类来包装原始对象，间接为其提供set和get方法</div><div class="line">* 采用ValueAnimator，监听动画的过程，自己实现属性的改变。</div><div class="line"></div><div class="line">针对以上解决方法，结合实际情况我们得出，Button设置宽度无法使用第一种方法，因为我们没有权限更改它的源码。所以我们可以采用第二种和第三种解决方法。</div><div class="line"></div><div class="line">采用第二种解决方法，创建包裹类：</div></pre></td></tr></table></figure>
-<pre><code>/**
- * 改变宽度
- */
-private void changeWidth(){
-    ViewWrapper wrapper = new ViewWrapper(mButton);
-    ObjectAnimator.ofInt(wrapper, &quot;width&quot;, 500).setDuration(5000).start();
-}
-
-/**
- * 用于包裹类
- */
-private static class ViewWrapper{
-    private View mTarget;
-
-    public ViewWrapper(View target){
-        this.mTarget = target;
-    }
-
-    public int getWidth(){
-        return mTarget.getLayoutParams().width;
-    }
-
-    public void setWidth(int width){
-        mTarget.getLayoutParams().width = width;
-        mTarget.requestLayout();
-    }
-}
-</code></pre><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">采用第三种解决方法，利用ValueAnimator</div></pre></td></tr></table></figure>
-<pre><code>/**
- *
- * @param target 要改变的目标View
- * @param start 开始的宽度
- * @param end   结束的宽度
- */
-private void performAnimte(final View target, final int start, final int end){
-    ValueAnimator valueAnimator = ValueAnimator.ofInt(1, 100);
-    valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-        private IntEvaluator mEvaluator = new IntEvaluator();
-        @Override
-        public void onAnimationUpdate(ValueAnimator animation) {
-            // 获取当前动画的进度
-            int currentValue = (int) animation.getAnimatedFraction();
-            // 获取当前进度占整个动画的比例
-            float fraction = animation.getAnimatedFraction();
-            // 直接调用整型估值器，通过比例计算出宽度，然后赋值
-            target.getLayoutParams().width = mEvaluator.evaluate(fraction, start, end);
-            target.requestLayout();
-
-        }
-    });
-    valueAnimator.setDuration(5000).start();
-}
-</code></pre><p>```</p>
+<h2 id="对任意属性做动画"><a href="#对任意属性做动画" class="headerlink" title="对任意属性做动画"></a>对任意属性做动画</h2><p>比如我们用属性动画对Button做宽度的增加，会首先想到</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">ObjectAnimator.ofInt(mButton, &quot;width&quot;, 500).setDuration(5000).start();</div></pre></td></tr></table></figure>
+<p>上述代码运行后会发现没有效果，其实没有效果是正常现象，因为如果随便传一个属性（例如width）轻则没有动画效果，重则程序直接crash。<br>下面分析属性动画的原理：<strong>属性动画要求动画的作用对象提供该属性的get和set方法，属性动画根据该属性的初始值和最终值，以动画的效果多次去调用set方法，每次传递给set方法等值都不一样，确切的来说是随着时间的推移，所传递的值越来越接近最终值</strong></p>
+<ol>
+<li>作用对象必须提供该属性的get和set方法</li>
+<li>作用对象的set方法必须要能使UI效果改变，否则动画无效果</li>
+</ol>
+<p>那么为什么我们对Button的width属性做动画会没有效果呢？这是因为虽然Button内部提供了getWidth和setWidth方法，但是这个setWidth方法并不是改变视图的大小，它是TextView新添加的方法，View是没有setWidth这个方法的。由于Button继承TextView，所以Button有setWidth方法，来看一下setWidth和getWidth方法的实现：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">     * Makes the TextView exactly this many pixels wide.</div><div class="line">     * You could do the same thing by specifying this number in the</div><div class="line">     * LayoutParams.</div><div class="line">     *</div><div class="line">     * @see #setMaxWidth(int)</div><div class="line">     * @see #setMinWidth(int)</div><div class="line">     * @see #getMinWidth()</div><div class="line">     * @see #getMaxWidth()</div><div class="line">     *</div><div class="line">     * @attr ref android.R.styleable#TextView_width</div><div class="line">     */</div><div class="line">    @android.view.RemotableViewMethod</div><div class="line">    public void setWidth(int pixels) &#123;</div><div class="line">        mMaxWidth = mMinWidth = pixels;</div><div class="line">        mMaxWidthMode = mMinWidthMode = PIXELS;</div><div class="line"></div><div class="line">        requestLayout();</div><div class="line">        invalidate();</div><div class="line">    &#125;</div><div class="line">    </div><div class="line">    /**</div><div class="line">     * Return the width of the your view.</div><div class="line">     *</div><div class="line">     * @return The width of your view, in pixels.</div><div class="line">     */</div><div class="line">    @ViewDebug.ExportedProperty(category = &quot;layout&quot;)</div><div class="line">    public final int getWidth() &#123;</div><div class="line">        return mRight - mLeft;</div><div class="line">    &#125;</div></pre></td></tr></table></figure>
+<p>从上述源码中可以看出，getWidth的确是获取View的宽度，而setWidth是TextView和其子类的专属方法，它的作用不是设置宽度，而是设置最大宽度和最小宽度的。具体来说在布局XML中android:layout_width对应宽度，android:width对应最大最小宽度。所以setWidth无法改变控件的宽度。<br>针对上述问题，官方告诉我们有三种解决方法</p>
+<ul>
+<li>给你的对象加上set和get方法，如果你有权限的话</li>
+<li>用一个类来包装原始对象，间接为其提供set和get方法</li>
+<li>采用ValueAnimator，监听动画的过程，自己实现属性的改变。</li>
+</ul>
+<p>针对以上解决方法，结合实际情况我们得出，Button设置宽度无法使用第一种方法，因为我们没有权限更改它的源码。所以我们可以采用第二种和第三种解决方法。</p>
+<p>采用第二种解决方法，创建包裹类：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">    * 改变宽度</div><div class="line">    */</div><div class="line">   private void changeWidth()&#123;</div><div class="line">       ViewWrapper wrapper = new ViewWrapper(mButton);</div><div class="line">       ObjectAnimator.ofInt(wrapper, &quot;width&quot;, 500).setDuration(5000).start();</div><div class="line">   &#125;</div><div class="line"></div><div class="line">   /**</div><div class="line">    * 用于包裹类</div><div class="line">    */</div><div class="line">   private static class ViewWrapper&#123;</div><div class="line">       private View mTarget;</div><div class="line"></div><div class="line">       public ViewWrapper(View target)&#123;</div><div class="line">           this.mTarget = target;</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       public int getWidth()&#123;</div><div class="line">           return mTarget.getLayoutParams().width;</div><div class="line">       &#125;</div><div class="line"></div><div class="line">       public void setWidth(int width)&#123;</div><div class="line">           mTarget.getLayoutParams().width = width;</div><div class="line">           mTarget.requestLayout();</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>采用第三种解决方法，利用ValueAnimator</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div></pre></td><td class="code"><pre><div class="line">/**</div><div class="line">    *</div><div class="line">    * @param target 要改变的目标View</div><div class="line">    * @param start 开始的宽度</div><div class="line">    * @param end   结束的宽度</div><div class="line">    */</div><div class="line">   private void performAnimte(final View target, final int start, final int end)&#123;</div><div class="line">       ValueAnimator valueAnimator = ValueAnimator.ofInt(1, 100);</div><div class="line">       valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() &#123;</div><div class="line">           private IntEvaluator mEvaluator = new IntEvaluator();</div><div class="line">           @Override</div><div class="line">           public void onAnimationUpdate(ValueAnimator animation) &#123;</div><div class="line">               // 获取当前动画的进度</div><div class="line">               int currentValue = (int) animation.getAnimatedFraction();</div><div class="line">               // 获取当前进度占整个动画的比例</div><div class="line">               float fraction = animation.getAnimatedFraction();</div><div class="line">               // 直接调用整型估值器，通过比例计算出宽度，然后赋值</div><div class="line">               target.getLayoutParams().width = mEvaluator.evaluate(fraction, start, end);</div><div class="line">               target.requestLayout();</div><div class="line"></div><div class="line">           &#125;</div><div class="line">       &#125;);</div><div class="line">       valueAnimator.setDuration(5000).start();</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 <h2 id="属性动画的工作原理"><a href="#属性动画的工作原理" class="headerlink" title="属性动画的工作原理"></a>属性动画的工作原理</h2><p>属性动画要求动画作用的对象提供该属性的set方法，属性动画根据你传递的该属性的初始值和最终值，以动画的效果多次去调用set方法。每次传递给set方法的值都不一样，确切的来说是随着时间的推移，所传递的值越来越接近最终值。如果动画的时候没有传递初始值，那么还要提供get方法，因为系统要去获取属性的初始值。对于属性动画来说，其动画过程中所做的就是这么多。</p>
 <h2 id="使用动画的注意事项"><a href="#使用动画的注意事项" class="headerlink" title="使用动画的注意事项"></a>使用动画的注意事项</h2><ol>
 <li>内存泄漏：在属性动画中有一类无限循环的动画，这类动画需要在Activity退出时及时停止，否则将导致Activity无法释放从而造成内存泄漏，View动画并不存在这种现象。</li>

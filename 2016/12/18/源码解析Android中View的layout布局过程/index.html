@@ -1,0 +1,696 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="自定义View," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="Android中的Veiw从内存中到呈现在UI界面上需要依次经历三个阶段：量算 -&amp;gt; 布局 -&amp;gt; 绘图，关于View的量算、布局、绘图的总体机制可参见博文 《 Android中View的布局及绘图机制》。量算是布局的基础，如果想了解量算的细节，可参见博文《源码解析Android中View的measure量算过程》。本文将从源码角度解析View的布局layout过程，本文会详细介绍Vie">
+<meta property="og:type" content="article">
+<meta property="og:title" content="源码解析Android中View的layout布局过程">
+<meta property="og:url" content="http://yoursite.com/2016/12/18/源码解析Android中View的layout布局过程/index.html">
+<meta property="og:site_name" content="fastabler">
+<meta property="og:description" content="Android中的Veiw从内存中到呈现在UI界面上需要依次经历三个阶段：量算 -&amp;gt; 布局 -&amp;gt; 绘图，关于View的量算、布局、绘图的总体机制可参见博文 《 Android中View的布局及绘图机制》。量算是布局的基础，如果想了解量算的细节，可参见博文《源码解析Android中View的measure量算过程》。本文将从源码角度解析View的布局layout过程，本文会详细介绍Vie">
+<meta property="og:updated_time" content="2017-02-11T09:17:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="源码解析Android中View的layout布局过程">
+<meta name="twitter:description" content="Android中的Veiw从内存中到呈现在UI界面上需要依次经历三个阶段：量算 -&amp;gt; 布局 -&amp;gt; 绘图，关于View的量算、布局、绘图的总体机制可参见博文 《 Android中View的布局及绘图机制》。量算是布局的基础，如果想了解量算的细节，可参见博文《源码解析Android中View的measure量算过程》。本文将从源码角度解析View的布局layout过程，本文会详细介绍Vie">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/12/18/源码解析Android中View的layout布局过程/"/>
+
+
+
+
+
+  <title> 源码解析Android中View的layout布局过程 | fastabler </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?ad1350e91810844821a7ad3e1f8ac561";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">fastabler</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+    
+      <p class="site-subtitle">黄金龙</p>
+    
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/18/源码解析Android中View的layout布局过程/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="fastabler">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2542991507,3032577261&fm=116&gp=0.jpg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="fastabler">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="fastabler" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                源码解析Android中View的layout布局过程
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-18T18:20:20+08:00">
+                2016-12-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/12/18/源码解析Android中View的layout布局过程/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/12/18/源码解析Android中View的layout布局过程/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Android中的Veiw从内存中到呈现在UI界面上需要依次经历三个阶段：量算 -&gt; 布局 -&gt; 绘图，关于View的量算、布局、绘图的总体机制可参见博文 《 Android中View的布局及绘图机制》。量算是布局的基础，如果想了解量算的细节，可参见博文《源码解析Android中View的measure量算过程》。本文将从源码角度解析View的布局layout过程，本文会详细介绍View布局过程中的关键方法，并对源码加上了注释以进行说明。</p>
+<p>对View进行布局的目的是计算出View的尺寸以及在其父控件中的位置，具体来说就是计算出View的四条边界分别到其父控件左边界、上边界的距离，即计算View的left、top、right、bottom的值。</p>
+<p>##layout</p>
+<p>layout()方法是View布局的入口，其源码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div></pre></td><td class="code"><pre><div class="line">public void layout(int l, int t, int r, int b) &#123;</div><div class="line">        //成员变量mPrivateFlags3中的一些比特位存储着和layout相关的信息</div><div class="line">        if ((mPrivateFlags3 &amp; PFLAG3_MEASURE_NEEDED_BEFORE_LAYOUT) != 0) &#123;</div><div class="line">            //如果在mPrivateFlags3的低位字节的第4位（从最右向左数第4位）的值为1，</div><div class="line">            //那么就表示在layout布局前需要先对View进行量算，</div><div class="line">            //这种情况下就会执行View的onMeasure方法对View进行量算</div><div class="line">            onMeasure(mOldWidthMeasureSpec, mOldHeightMeasureSpec);</div><div class="line">            //量算完成后就会将mPrivateFlags3低位字节的第4位重置为0，</div><div class="line">            //移除掉标签PFLAG3_MEASURE_NEEDED_BEFORE_LAYOUT</div><div class="line">            mPrivateFlags3 &amp;= ~PFLAG3_MEASURE_NEEDED_BEFORE_LAYOUT;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        int oldL = mLeft;</div><div class="line">        int oldT = mTop;</div><div class="line">        int oldB = mBottom;</div><div class="line">        int oldR = mRight;</div><div class="line"></div><div class="line">        //如果isLayoutModeOptical()返回true，那么就会执行setOpticalFrame()方法，</div><div class="line">        //否则会执行setFrame()方法。并且setOpticalFrame()内部会调用setFrame()，</div><div class="line">        //所以无论如何都会执行setFrame()方法。</div><div class="line">        //setFrame()方法会将View新的left、top、right、bottom存储到View的成员变量中</div><div class="line">        //并且返回一个boolean值，如果返回true表示View的位置或尺寸发生了变化，</div><div class="line">        //否则表示未发生变化</div><div class="line">        boolean changed = isLayoutModeOptical(mParent) ?</div><div class="line">                setOpticalFrame(l, t, r, b) : setFrame(l, t, r, b);</div><div class="line"></div><div class="line"></div><div class="line">        if (changed || (mPrivateFlags &amp; PFLAG_LAYOUT_REQUIRED) == PFLAG_LAYOUT_REQUIRED) &#123;</div><div class="line">            //如果View的布局发生了变化，或者mPrivateFlags有需要LAYOUT的标签PFLAG_LAYOUT_REQUIRED，</div><div class="line">            //那么就会执行以下代码</div><div class="line">            //首先会触发onLayout方法的执行，View中默认的onLayout方法是个空方法</div><div class="line">            //不过继承自ViewGroup的类都需要实现onLayout方法，从而在onLayout方法中依次循环子View，</div><div class="line">            //并调用子View的layout方法</div><div class="line">            onLayout(changed, l, t, r, b);</div><div class="line">            //在执行完onLayout方法之后，从mPrivateFlags中移除标签PFLAG_LAYOUT_REQUIRED</div><div class="line">            mPrivateFlags &amp;= ~PFLAG_LAYOUT_REQUIRED;</div><div class="line"></div><div class="line">            //我们可以通过View的addOnLayoutChangeListener(View.OnLayoutChangeListener listener)方法</div><div class="line">            //向View中添加多个Layout发生变化的事件监听器</div><div class="line">            //这些事件监听器都存储在mListenerInfo.mOnLayoutChangeListeners这个ArrayList中</div><div class="line">            ListenerInfo li = mListenerInfo;</div><div class="line">            if (li != null &amp;&amp; li.mOnLayoutChangeListeners != null) &#123;</div><div class="line">                //首先对mOnLayoutChangeListeners中的事件监听器进行拷贝</div><div class="line">                ArrayList&lt;OnLayoutChangeListener&gt; listenersCopy =</div><div class="line">                        (ArrayList&lt;OnLayoutChangeListener&gt;)li.mOnLayoutChangeListeners.clone();</div><div class="line">                int numListeners = listenersCopy.size();</div><div class="line">                for (int i = 0; i &lt; numListeners; ++i) &#123;</div><div class="line">                    //遍历注册的事件监听器，依次调用其onLayoutChange方法，这样Layout事件监听器就得到了响应</div><div class="line">                    listenersCopy.get(i).onLayoutChange(this, l, t, r, b, oldL, oldT, oldR, oldB);</div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        //从mPrivateFlags中移除强制Layout的标签PFLAG_FORCE_LAYOUT</div><div class="line">        mPrivateFlags &amp;= ~PFLAG_FORCE_LAYOUT;</div><div class="line">        //向mPrivateFlags3中加入Layout完成的标签PFLAG3_IS_LAID_OUT</div><div class="line">        mPrivateFlags3 |= PFLAG3_IS_LAID_OUT;</div><div class="line">    &#125;</div></pre></td></tr></table></figure></p>
+<p>在layout()方法内部刚开始执行的时候，首先会根据mPrivateFlags3变量是否具有标志位PFLAG3_MEASURE_NEEDED_BEFORE_LAYOUT判断是否需要执行View的onMeasure()方法。如果具有标志位PFLAG3_MEASURE_NEEDED_BEFORE_LAYOUT，则执行onMeasure()方法，从而对View进行量算，量算的结果会保存到View的成员变量中。量算完成后就会将mPrivateFlags3低位字节的第4位重置为0，移除掉标签PFLAG3_MEASURE_NEEDED_BEFORE_LAYOUT。</p>
+<p>如果isLayoutModeOptical()返回true，那么就会执行setOpticalFrame()方法，否则会执行setFrame()方法。并且setOpticalFrame()内部会调用setFrame()，所以无论如何都会执行setFrame()方法。setFrame()方法会将View新的left、top、right、bottom存储到View的成员变量中，并且返回一个boolean值，如果返回true表示View的位置或尺寸发生了变化，否则表示未发生变化。后面会对setFrame()方法详细介绍。</p>
+<p>如果View的布局发生了变化，或者mPrivateFlags有需要LAYOUT的标签PFLAG_LAYOUT_REQUIRED，就会触发onLayout方法的执行，View中默认的onLayout方法是个空方法。不过继承自ViewGroup的类都需要实现onLayout方法，从而在onLayout方法中依次循环子View，并调用子View的layout方法。在执行完onLayout方法之后，从mPrivateFlags中移除标签PFLAG_LAYOUT_REQUIRED。然后会遍历注册的Layout Change事件监听器，依次调用其onLayoutChange方法，这样Layout事件监听器就得到了响应。</p>
+<p>最后，从mPrivateFlags中移除强制Layout的标签PFLAG_FORCE_LAYOUT，向mPrivateFlags3中加入Layout完成的标签PFLAG3_IS_LAID_OUT。</p>
+<p>##setFrame</p>
+<p>setFrame()方法是具体用来完成给View分配尺寸以及位置工作的，在layout()方法中会调用setFrame()方法。其源码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div></pre></td><td class="code"><pre><div class="line">protected boolean setFrame(int left, int top, int right, int bottom) &#123;</div><div class="line">    boolean changed = false;</div><div class="line"></div><div class="line">    if (DBG) &#123;</div><div class="line">        Log.d(&quot;View&quot;, this + &quot; View.setFrame(&quot; + left + &quot;,&quot; + top + &quot;,&quot;</div><div class="line">                + right + &quot;,&quot; + bottom + &quot;)&quot;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    if (mLeft != left || mRight != right || mTop != top || mBottom != bottom) &#123;</div><div class="line">        //将新旧left、right、top、bottom进行对比，只要不完全相对就说明View的布局发生了变化，</div><div class="line">        //则将changed变量设置为true</div><div class="line">        changed = true;</div><div class="line"></div><div class="line">        //先保存一下mPrivateFlags中的PFLAG_DRAWN标签信息</div><div class="line">        int drawn = mPrivateFlags &amp; PFLAG_DRAWN;</div><div class="line"></div><div class="line">        //分别计算View的新旧尺寸</div><div class="line">        int oldWidth = mRight - mLeft;</div><div class="line">        int oldHeight = mBottom - mTop;</div><div class="line">        int newWidth = right - left;</div><div class="line">        int newHeight = bottom - top;</div><div class="line">        //比较View的新旧尺寸是否相同，如果尺寸发生了变化，那么sizeChanged的值为true</div><div class="line">        boolean sizeChanged = (newWidth != oldWidth) || (newHeight != oldHeight);</div><div class="line"></div><div class="line">        // Invalidate our old position</div><div class="line">        invalidate(sizeChanged);</div><div class="line"></div><div class="line">        //将新的left、top、right、bottom存储到View的成员变量中</div><div class="line">        mLeft = left;</div><div class="line">        mTop = top;</div><div class="line">        mRight = right;</div><div class="line">        mBottom = bottom;</div><div class="line">        //mRenderNode.setLeftTopRightBottom()方法会调用RenderNode中原生方法的nSetLeftTopRightBottom()方法，</div><div class="line">        //该方法会根据left、top、right、bottom更新用于渲染的显示列表</div><div class="line">        mRenderNode.setLeftTopRightBottom(mLeft, mTop, mRight, mBottom);</div><div class="line"></div><div class="line">        //向mPrivateFlags中增加标签PFLAG_HAS_BOUNDS，表示当前View具有了明确的边界范围</div><div class="line">        mPrivateFlags |= PFLAG_HAS_BOUNDS;</div><div class="line"></div><div class="line"></div><div class="line">        if (sizeChanged) &#123;</div><div class="line">            //如果View的尺寸和之前相比发生了变化，那么就执行sizeChange()方法，</div><div class="line">            //该方法中又会调用onSizeChanged()方法，并将View的新旧尺寸传递进去</div><div class="line">            sizeChange(newWidth, newHeight, oldWidth, oldHeight);</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        if ((mViewFlags &amp; VISIBILITY_MASK) == VISIBLE || mGhostView != null) &#123;</div><div class="line">            //有可能在调用setFrame方法之前，invalidate方法就被调用了，</div><div class="line">            //这会导致mPrivateFlags移除了PFLAG_DRAWN标签。</div><div class="line">            //如果当前View处于可见状态就将mPrivateFlags强制添加PFLAG_DRAWN状态位，</div><div class="line">            //这样会确保下面的invalidate()方法会执行到其父控件级别。</div><div class="line">            mPrivateFlags |= PFLAG_DRAWN;</div><div class="line">            invalidate(sizeChanged);</div><div class="line">            //invalidateParentCaches()方法会移除其父控件的PFLAG_INVALIDATED标签，</div><div class="line">            //这样其父控件就会重建用于渲染的显示列表</div><div class="line">            invalidateParentCaches();</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        // 重新恢复mPrivateFlags中原有的PFLAG_DRAWN标签信息</div><div class="line">        mPrivateFlags |= drawn;</div><div class="line"></div><div class="line">        mBackgroundSizeChanged = true;</div><div class="line">        if (mForegroundInfo != null) &#123;</div><div class="line">            mForegroundInfo.mBoundsChanged = true;</div><div class="line">        &#125;</div><div class="line"></div><div class="line">        notifySubtreeAccessibilityStateChangedIfNeeded();</div><div class="line">    &#125;</div><div class="line">    return changed;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在该方法中，会将新旧left、right、top、bottom进行对比，只要不完全相同就说明View的布局发生了变化，则将changed变量设置为true。然后比较View的新旧尺寸是否相同，如果尺寸发生了变化，并将其保存到变量sizeChanged中。如果尺寸发生了变化，那么sizeChanged的值为true。</p>
+<p>然后将新的left、top、right、bottom存储到View的成员变量中保存下来。并执行mRenderNode.setLeftTopRightBottom()方法会，其会调用RenderNode中原生方法的nSetLeftTopRightBottom()方法，该方法会根据left、top、right、bottom更新用于渲染的显示列表。</p>
+<p>如果View的尺寸和之前相比发生了变化，那么就执行sizeChange()方法，该方法中又会调用onSizeChanged()方法，并将View的新旧尺寸传递进去。</p>
+<p>如果View处于可见状态，那么会调用invalidate和invalidateParentCaches方法。invalidateParentCaches()方法会移除其父控件的PFLAG_INVALIDATED标签，这样其父控件就会重建用于渲染的显示列表。</p>
+<p>##sizeChange</p>
+<p>sizeChange方法会在View的尺寸发生变化时调用，在setFrame()方法中就可能会调用sizeChange()方法。当然，在View的setLeft()、setTop()、setRight()、setBottom()等其他改变View尺寸的方法中也会调用sizeChange()方法，其源码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">private void sizeChange(int newWidth, int newHeight, int oldWidth, int oldHeight) &#123;</div><div class="line">    //将View的新旧尺寸传递给onSizeChanged()方法</div><div class="line">    onSizeChanged(newWidth, newHeight, oldWidth, oldHeight);</div><div class="line">    if (mOverlay != null) &#123;</div><div class="line">        mOverlay.getOverlayView().setRight(newWidth);</div><div class="line">        mOverlay.getOverlayView().setBottom(newHeight);</div><div class="line">    &#125;</div><div class="line">    rebuildOutline();</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在该方法中其主要将View的新旧尺寸传递给onSizeChanged()方法使其执行。</p>
+<p>##onSizeChanged</p>
+<p>onSizeChanged()方法是个空方法，代码如下所示：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">protected void onSizeChanged(int w, int h, int oldw, int oldh) &#123;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>该方法会在View的尺寸发生变化时，通过sizeChange()方法的执行而被调用。当View第一次加入到View树中时，该方法也会被调用，只不过传入的旧尺寸oldWidth和oldHeight都是0。</p>
+<p>##总结</p>
+<p>layout方法总的调用过程主线如下所示：</p>
+<p>layout() -&gt; onMeasure() -&gt; setFrame() -&gt; sizeChange() -&gt; onSizeChanged() -&gt; onLayout() -&gt;遍历执行OnLayoutChangeListener.onLayoutChange()</p>
+<p>希望本文对大家理解View的layout布局过程有所帮助！</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/自定义View/" rel="tag"># 自定义View</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/12/17/源码解析Android中View的Measure量算过程/" rel="next" title="源码解析Android中View的Measure量算过程">
+                <i class="fa fa-chevron-left"></i> 源码解析Android中View的Measure量算过程
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/06/Rxjava操作符大全/" rel="prev" title="Rxjava操作符大全">
+                Rxjava操作符大全 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+        <div class="ds-share flat" data-thread-key="2016/12/18/源码解析Android中View的layout布局过程/"
+     data-title="源码解析Android中View的layout布局过程"
+     data-content=""
+     data-url="http://yoursite.com/2016/12/18/源码解析Android中View的layout布局过程/">
+  <div class="ds-share-inline">
+    <ul  class="ds-share-icons-16">
+
+      <li data-toggle="ds-share-icons-more"><a class="ds-more" href="javascript:void(0);">分享到：</a></li>
+      <li><a class="ds-weibo" href="javascript:void(0);" data-service="weibo">微博</a></li>
+      <li><a class="ds-qzone" href="javascript:void(0);" data-service="qzone">QQ空间</a></li>
+      <li><a class="ds-qqt" href="javascript:void(0);" data-service="qqt">腾讯微博</a></li>
+      <li><a class="ds-wechat" href="javascript:void(0);" data-service="wechat">微信</a></li>
+
+    </ul>
+    <div class="ds-share-icons-more">
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/12/18/源码解析Android中View的layout布局过程/"
+           data-title="源码解析Android中View的layout布局过程" data-url="http://yoursite.com/2016/12/18/源码解析Android中View的layout布局过程/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=2542991507,3032577261&fm=116&gp=0.jpg"
+               alt="fastabler" />
+          <p class="site-author-name" itemprop="name">fastabler</p>
+          <p class="site-description motion-element" itemprop="description">Efforts can only pass,hard to be excellent.</p>
+        </div>
+        <nav class="site-state motion-element">
+        
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fastabler</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.0"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"fastabler"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+</body>
+</html>

@@ -90,7 +90,7 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/17/源码解析Android中View的Measure量算过程/index.html">
 <meta property="og:site_name" content="fastabler">
 <meta property="og:description" content="Android中的Veiw从内存中到呈现在UI界面上需要依次经历三个阶段：量算 -&amp;gt; 布局 -&amp;gt; 绘图，关于View的量算、布局、绘图的总体机制可参见博文《 Android中View的布局及绘图机制》。如果想了解layout布局的细节，可参见博文《源码解析Android中View的layout布局过程》。量算是布局和绘图的基础，所以量算是很重要的一个环节。本文将从源码角度解析View的">
-<meta property="og:updated_time" content="2017-02-11T09:11:51.000Z">
+<meta property="og:updated_time" content="2017-02-11T09:21:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="源码解析Android中View的Measure量算过程">
 <meta name="twitter:description" content="Android中的Veiw从内存中到呈现在UI界面上需要依次经历三个阶段：量算 -&amp;gt; 布局 -&amp;gt; 绘图，关于View的量算、布局、绘图的总体机制可参见博文《 Android中View的布局及绘图机制》。如果想了解layout布局的细节，可参见博文《源码解析Android中View的layout布局过程》。量算是布局和绘图的基础，所以量算是很重要的一个环节。本文将从源码角度解析View的">
@@ -335,7 +335,7 @@
       
 
       
-        <p>Android中的Veiw从内存中到呈现在UI界面上需要依次经历三个阶段：量算 -&gt; 布局 -&gt; 绘图，关于View的量算、布局、绘图的总体机制可参见博文《 Android中View的布局及绘图机制》。如果想了解layout布局的细节，可参见博文《源码解析Android中View的layout布局过程》。量算是布局和绘图的基础，所以量算是很重要的一个环节。本文将从源码角度解析View的量算过程，这其中会涉及某些关键类以及关键方法。</p>
+        <p>Android中的Veiw从内存中到呈现在UI界面上需要依次经历三个阶段：量算 -&gt; 布局 -&gt; 绘图，关于View的量算、布局、绘图的总体机制可参见博文<a href="http://fastabler.online/2016/12/11/Android中View的量算、布局以及绘图机制/" target="_blank" rel="external">《 Android中View的布局及绘图机制》</a>。如果想了解layout布局的细节，可参见博文<a href="http://fastabler.online/2016/12/18/源码解析Android中View的layout布局过程/" target="_blank" rel="external">《源码解析Android中View的layout布局过程》</a>。量算是布局和绘图的基础，所以量算是很重要的一个环节。本文将从源码角度解析View的量算过程，这其中会涉及某些关键类以及关键方法。</p>
 <p>对View进行量算的目的是让View的父控件知道View想要多大的尺寸。</p>
 <p>##量算过程概述</p>
 <p>如果要进行量算的View是ViewGroup类型，那么ViewGroup会在onMeasure方法内会遍历子View依次进行量算，本文重点说明非ViewGroup的View的量算过程，因为我们一旦了解了非ViewGroup的View的量算过程，ViewGroup的量算理解起来就要简单许多，主要是ViewGroup在其内部对子View再依次执行量算。</p>
@@ -570,7 +570,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>

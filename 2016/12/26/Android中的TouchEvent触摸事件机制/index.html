@@ -90,12 +90,12 @@
 <meta property="og:url" content="http://yoursite.com/2016/12/26/Android中的TouchEvent触摸事件机制/index.html">
 <meta property="og:site_name" content="fastabler">
 <meta property="og:description" content="当我们的手指在Android屏幕上点击或滑动时，就会触发触摸事件TouchEvent。在App中ViewGroup和View存在多级嵌套，在最外层的是Activity，最内层的View，介于Activity与View之间的是一些ViewGroup。本文为了简化讨论，我们假设一个Activity中只有一个ViewGroup，这个ViewGroup中只有一个View。当我们用手指触摸到View的UI时">
-<meta property="og:image" content="http://img.blog.csdn.net/20151219223049372">
-<meta property="og:updated_time" content="2017-02-11T09:49:31.000Z">
+<meta property="og:image" content="http://fastabler.online/images/20151219223049372.png">
+<meta property="og:updated_time" content="2018-07-07T01:05:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中的TouchEvent触摸事件机制">
 <meta name="twitter:description" content="当我们的手指在Android屏幕上点击或滑动时，就会触发触摸事件TouchEvent。在App中ViewGroup和View存在多级嵌套，在最外层的是Activity，最内层的View，介于Activity与View之间的是一些ViewGroup。本文为了简化讨论，我们假设一个Activity中只有一个ViewGroup，这个ViewGroup中只有一个View。当我们用手指触摸到View的UI时">
-<meta name="twitter:image" content="http://img.blog.csdn.net/20151219223049372">
+<meta name="twitter:image" content="http://fastabler.online/images/20151219223049372.png">
 
 
 
@@ -338,15 +338,14 @@
 
       
         <p>当我们的手指在Android屏幕上点击或滑动时，就会触发触摸事件TouchEvent。在App中ViewGroup和View存在多级嵌套，在最外层的是Activity，最内层的View，介于Activity与View之间的是一些ViewGroup。本文为了简化讨论，我们假设一个Activity中只有一个ViewGroup，这个ViewGroup中只有一个View。当我们用手指触摸到View的UI时，就会产生触摸事件TouchEvent，总的过程如下图所示：</p>
-<p><img src="http://img.blog.csdn.net/20151219223049372" alt=""></p>
+<p><img src="http://fastabler.online/images/20151219223049372.png" alt=""></p>
 <p>首先是最外层的Activity接收到该事件，触发Activity的dispatchTouchEvent的执行，在该方法中Activity又会调用内部ViewGroup的dispatchTouchEvent方法的执行，在ViewGroup的dispatchTouchEvent方法中又会调用最内层的View的dispatchTouchEvent方法的执行，在View的dispatchTouchEvent方法中可能会执行View的onTouchEvent方法，然后ViewGroup也有可能执行ViewGroup的onTouchEvent方法，然后Activity也有可能执行Activity的onTouchEvent方法的执行。</p>
 <p>上图是精简过的主要流程图，总共是两条主线：</p>
 <p>第一条主线是，从Activity -&gt; ViewGroup -&gt; View，从外向内依次调用dispatchTouchEvent方法，Android会依次把MotionEvent参数传递给该方法。dispatchTouchEvent的作用是传递触摸事件，该主线体现了将触摸事件从外向内逐级传递派发的过程，dispatchTouchEvent是每次传递触摸事件的入口。</p>
 <p>第二条主线是，从View -&gt; ViewGroup -&gt; Activity，从内向外依次调用onTouchEvent方法，Android会依次把MotionEvent参数传递给该方法。onTouchEvent的作用是处理触摸事件，该主线体现了将触摸事件从内向外逐级处理的过程。</p>
 <p>dispatchTouchEvent和onTouchEvent都接收一个MotionEvent类型的参数，MotionEvent封装了触摸事件的数据信息，包括触摸事件的类型以及坐标位置等，详见博文《Android中的MotionEvent》。dispatchTouchEvent和onTouchEvent都有一个boolean类型的返回值，如果返回true，表示当前对象已经对触摸事件进行了处理；如果返回false，表示当前对象没有对触摸事件进行处理。</p>
 <p>下面分别对Activity、ViewGroup、View的事件派发、处理的过程详细说明。</p>
-<p>##Activity</p>
-<p>###dispatchTouchEvent<br>所有在UI上的触摸操作生成的触摸事件都首先会触发Activity中dispatchTouchEvent方法的执行，其源码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public boolean dispatchTouchEvent(MotionEvent ev) &#123;</div><div class="line">    if (ev.getAction() == MotionEvent.ACTION_DOWN) &#123;</div><div class="line">        onUserInteraction();</div><div class="line">    &#125;</div><div class="line">    if (getWindow().superDispatchTouchEvent(ev)) &#123;</div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">    return onTouchEvent(ev);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h2><h3 id="dispatchTouchEvent"><a href="#dispatchTouchEvent" class="headerlink" title="dispatchTouchEvent"></a>dispatchTouchEvent</h3><p>所有在UI上的触摸操作生成的触摸事件都首先会触发Activity中dispatchTouchEvent方法的执行，其源码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">public boolean dispatchTouchEvent(MotionEvent ev) &#123;</div><div class="line">    if (ev.getAction() == MotionEvent.ACTION_DOWN) &#123;</div><div class="line">        onUserInteraction();</div><div class="line">    &#125;</div><div class="line">    if (getWindow().superDispatchTouchEvent(ev)) &#123;</div><div class="line">        return true;</div><div class="line">    &#125;</div><div class="line">    return onTouchEvent(ev);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>上述方法的关键是，Activity会首先通过getWindow()方法获取当前的window对象，然后调用window的superDispatchTouchEvent方法，实际上，getWindow()返回的是一个PhoneWindow类型的实例，这样就会调用PhoneWindow的superDispatchTouchEvent方法，其源码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">@Override</div><div class="line">public boolean superDispatchTouchEvent(MotionEvent event) &#123;</div><div class="line">    return mDecor.superDispatchTouchEvent(event);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>mDecor是PhoneWindow中一个DecorView类型的变量，DecorView代表了当前Window最顶级的View，可以看做是根View。由上代码看出，后面会执行DecorView的superDispatchTouchEvent方法，其源码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">public boolean superDispatchTouchEvent(MotionEvent event) &#123;</div><div class="line">    return super.dispatchTouchEvent(event);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>实际上DectorView继承自FrameLayout，所以DectorView间接继承自ViewGroup，所以会DectorView执行其父类ViewGroup对应的dispatchTouchEvent方法。在该方法中，DectorView会找到其触摸的子节点，实际上其子节点也是一个ViewGroup，然后再执行该ViewGroup的dispatchTouchEvent方法，这样就实现了将触摸事件参数MotionEvent从Activity中传入到DecorView的子ViewGroup中了。我们会在后面探讨ViewGroup中的dispatchTouchEvent方法中的执行逻辑，此处就不再过多介绍了。</p>
@@ -485,8 +484,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://fastabler.online/images/53e59d9a3ce6cf6e9c4f4a56f50553f8.jpeg"
@@ -535,6 +543,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Activity"><span class="nav-number">1.</span> <span class="nav-text">Activity</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#dispatchTouchEvent"><span class="nav-number">1.1.</span> <span class="nav-text">dispatchTouchEvent</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>

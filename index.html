@@ -2086,7 +2086,7 @@ android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot; tools:context=
 
 &lt;/RelativeLayout&gt;
 </code></pre><p>该布局文件很简单，RelativeLayout下面就一个TextView。</p>
-<p>我们启动App后，通过Hierarchy Viewer查看App中的布局层级，如下所示：<br><img src="http://fastabler.online/images/20151016204222311" alt=""></p>
+<p>我们启动App后，通过Hierarchy Viewer查看App中的布局层级，如下所示：<br><img src="http://fastabler.online/images/20151016204222311.png" alt=""></p>
 <p>从上图我们可以看出，App的根结点是PhoneWindow\$DecorView，此处的\$表示DecorView是PhoneWindow下面的内部类实例。PhoneWindow\$DecorView下面有三个child，分别是LinearLayout实例、View@49da043和View@44ff410。View@49da043表示的是navigationBarBackground，View@44ff410表示的是statusBarBackground。LinearLayout下面有两个child，分别是ViewStub实例和FrameLayout实例，其中ViewStub不需要绘制，所以我们在下面的讨论中可以直接对其忽略。FrameLayout下有一个child，RelativeLayout实例，该RelativeLayout实例对应的就是布局文件activity_main.xml中的RelativeLayout，RelativeLayout下有一个child，即TextView。</p>
 <p>以上提到的控件都是View的实例，有的则是ViewGroup的实例，ViewGroup继承自View，PhoneWindow\$DecorView、RelativeLayout、FrameLayout、RelativeLayout都直接或间接继承自ViewGroup，只有ViewGroup实例才能有子节点。</p>
 <p>当我们在onCreate()方法中调用setContentView(R.layout.activity_main)方法后，Android会从layout的树形结构中自上而下开始对所有的View进行量算、布局、绘图，具体来说经过以下过程：</p>
@@ -2107,7 +2107,7 @@ android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot; tools:context=
 <p>量算的起点是ViewRootImpl类，ViewRootImpl是根View，即View树上面的根结点，严格来说ViewRootImpl不属于View，其实现了ViewParent接口， 其下才是PhoneWindow\$DecorView。</p>
 <p>Android在对View树进行自上而下的量算时，采用的是深度优先算法，而非广度优先算法，即遍历到某个View时，Android会首先沿着该View一直纵向遍历并量算到处于叶子节点的View，只有对该View及其所有子孙View（如果存在子孙View的话）完成量算后，才会量算该View的兄弟节点View。</p>
 <p>以下是Android对所有View自上而下量算的调用过程：</p>
-<p><img src="http://fastabler.online/images/20151017110657231" alt=""></p>
+<p><img src="http://fastabler.online/images/20151017110657231.png" alt=""></p>
 <p>由上我们可以看出，首先ViewRootImpl执行了doTraversal()和performTraversals() 方法，然后执行ViewRootImpl的performMeasure()方法，该方法是Android对所有View进行量算的起点。在该方法中会从ViewRootImpl开始自上而上对View树进行遍历，首先ViewRootImpl对PhoneWindow\$DecorView进行量算，在执行到PhoneWindow\$DecorView的onMeasure()方法时，其遍历所有的child，对依次它们进行量算，首先对调用LinearLayout的measure()方法，对第一个子节点LinearLayout进行量算。</p>
 <p>LinearLayout在measure()方法中会调用onMeasure()方法，在该方法中LinearLayout调用了measureVertical()方法，该方法会遍历其child并对其进行量算，由于其子节点ViewStub不用于渲染，所以此处不对其量算，对其忽略，对另一个child FrameLayout进行量算，调用FrameLayout的measure()方法。</p>
 <p>FrameLayout在执行measure()方法时会执行onMeasure()方法，在该方法中会遍历所有的child，并对它们进行量算。其下只有一个child，即RelativeLayout，调用RelativeLayout的measure()方法，对其进行量算。</p>
@@ -2120,7 +2120,7 @@ android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot; tools:context=
 <p>布局的起点也是ViewRootImpl类，ViewRootImpl是根View，即View树上面的根结点，严格来说ViewRootImpl不属于View，其实现了ViewParent接口， 其下才是PhoneWindow\$DecorView。</p>
 <p>Android在对View树进行自上而下的布局时，采用的是深度优先算法，而非广度优先算法，即遍历到某个View时，Android会首先沿着该View一直纵向遍历并布局到处于叶子节点的View，只有对该View及其所有子孙View（如果存在子孙View的话）完成布局后，才会布局该View的兄弟节点View。</p>
 <p>Android中的布局过程与之前上面提到的量算过程很类似，以下是Android对所有View自上而下布局的调用过程：</p>
-<p><img src="http://fastabler.online/images/20151017124528354" alt=""></p>
+<p><img src="http://fastabler.online/images/20151017124528354.png" alt=""></p>
 <p>由上我们可以看出，首先ViewRootImpl执行了doTraversal()和performTraversals() 方法，然后执行ViewRootImpl的performLayout()方法，该方法是Android对所有View进行布局的起点。在该方法中会从ViewRootImpl开始自上而下对View树进行遍历，首先ViewRootImpl执行PhoneWindow\$DecorView的layout()方法，对其进行布局。</p>
 <p>PhoneWindow\$DecorView在其layout()方法中会执行onLayout()方法，PhoneWindow\$DecorView会在onLayout()方法中遍历其所有的child，并依次调用child的layout()方法，实现对child的布局。首先调用其第一个child LinearLayout的layout()方法。</p>
 <p>LinearLayout在layout()方法中会执行onLayout()方法，在该方法中会调用layoutVertical()方法，该方法会遍历其所有的child并依次调用child的layout()方法进行布局。由于其子节点ViewStub不用于渲染，所以此处不对其进行布局，对其忽略，对另一个child FrameLayout进行布局，调用FrameLayout的layout()方法。</p>
@@ -2134,7 +2134,7 @@ android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot; tools:context=
 <p>当我们需要自定义一个View（而非ViewGroup）时，我们需要重写View的onDraw()方法以实现对自定义View的绘制，即onDraw()用于绘制View自身UI。<br>Android中的ViewGroup类重写了View中的dispatchDraw()方法，ViewGroup.dispatchDraw()方法会遍历其所有的child，并依次调用child的draw()方法，即dispatchDraw()用于绘制ViewGroup的所有子孙View的UI，这是与onDraw()不同的。由于ViewGroup已经具体实现了dispatchDraw()方法，所以大部分情况下ViewGroup的子类无需再对其进行重写，例如PhoneWindow\$DecorView、RelativeLayout、FrameLayout、RelativeLayout都没有重写dispatchDraw()方法。只有在极少数情况下，为了实现某些特殊需求，我们才有可能重写ViewGroup的dispatchDraw()方法，但是即便重写该方法我们也应该在我们的实现中调用super.dispatchDraw()方法以便实现对子孙View进行绘制。<br>绘图的起点也是ViewRootImpl类，ViewRootImpl是根View，即View树上面的根结点，严格来说ViewRootImpl不属于View，其实现了ViewParent接口， 其下才是PhoneWindow\$DecorView。</p>
 <p>Android在对View树进行自上而下的绘图时，采用的也是深度优先算法，而非广度优先算法，即遍历到某个View时，Android会首先沿着该View一直纵向遍历并绘图到处于叶子节点的View，只有对该View及其所有子孙View（如果存在子孙View的话）完成绘图后，才会渲染该View的兄弟节点View。</p>
 <p>Android中的绘图过程与之前上面提到的量算、布局过程类似，以下是Android对所有View进行自上而下绘图的调用过程：</p>
-<p><img src="http://fastabler.online/images/20151017134329148" alt=""></p>
+<p><img src="http://fastabler.online/images/20151017134329148.png" alt=""></p>
 <p>由上我们可以看出，首先ViewRootImpl执行了doTraversal()和performTraversals() 方法，然后执行ViewRootImpl的performDraw()方法，该方法是Android对所有View进行绘图的起点。在该方法中会从ViewRootImpl开始自上而下对View树进行遍历，首先ViewRootImpl执行PhoneWindow\$DecorView的draw()方法，对其绘图。</p>
 <p>PhoneWindow\$DecorView在其draw()方法中会依次执行onDraw()方法和dispatchDraw()方法，在dispatchDraw()方法中会遍历所有的child，调用child的draw()方法，对child进行绘图。首先调用其第一个child LinearLayout的draw()方法。</p>
 <p>LinearLayout在darw()方法中也会依次执行onDraw()方法和dispatchDraw()方法，在dispatchDraw()方法中会遍历所有的child，调用child的draw()方法，对child进行绘图。由于其子节点ViewStub不用于渲染，所以此处不对其进行绘图，对其忽略，对另一个child FrameLayout进行绘图，调用FrameLayout的draw()方法。</p>

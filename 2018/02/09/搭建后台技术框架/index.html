@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="自定义View," />
+  <meta name="keywords" content="java后台," />
 
 
 
@@ -84,19 +84,25 @@
 
 
 
-<meta name="description" content="运动事件描述了动作的动作代码和一些列的坐标值。动作代码表明了当触点按下或者弹起等引起的状态变化。坐标值描述了位置信息以及以他的运动属性。
-例如，当用户第一次触摸屏幕的时候，系统给窗体发出一个触摸事件，动作代码为ACTION_DOWN，并提供了一些列的坐标值，比如触摸的X、Y坐标，接触区域的压力、尺寸、方向等信息。一些设备能够在同一时间报告多条运动轨迹。多点触控屏幕为每个手指都发出一条运动轨迹。手指">
+<meta name="description" content="适用范围针对中小型互联网公司，特别适用于手机App的后台架构，支撑5万日活，满足中小型公司需求
+
+QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大概产生100的请求，那么平均下来，我们系统大概应该支撑的请求为：50000  100 / (4  60 * 60) = 350 qps/s
+业务数据 业务量，我们自己是新闻业务，可能会有其他的业务，比如游戏，商城等等，基本每天新增的业务数据都">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Android中的MotionEvent">
-<meta property="og:url" content="http://yoursite.com/2016/12/25/Android中的MotionEvent/index.html">
+<meta property="og:title" content="搭建后台技术框架">
+<meta property="og:url" content="http://yoursite.com/2018/02/09/搭建后台技术框架/index.html">
 <meta property="og:site_name" content="fastabler">
-<meta property="og:description" content="运动事件描述了动作的动作代码和一些列的坐标值。动作代码表明了当触点按下或者弹起等引起的状态变化。坐标值描述了位置信息以及以他的运动属性。
-例如，当用户第一次触摸屏幕的时候，系统给窗体发出一个触摸事件，动作代码为ACTION_DOWN，并提供了一些列的坐标值，比如触摸的X、Y坐标，接触区域的压力、尺寸、方向等信息。一些设备能够在同一时间报告多条运动轨迹。多点触控屏幕为每个手指都发出一条运动轨迹。手指">
-<meta property="og:updated_time" content="2017-02-11T09:27:48.000Z">
+<meta property="og:description" content="适用范围针对中小型互联网公司，特别适用于手机App的后台架构，支撑5万日活，满足中小型公司需求
+
+QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大概产生100的请求，那么平均下来，我们系统大概应该支撑的请求为：50000  100 / (4  60 * 60) = 350 qps/s
+业务数据 业务量，我们自己是新闻业务，可能会有其他的业务，比如游戏，商城等等，基本每天新增的业务数据都">
+<meta property="og:updated_time" content="2018-07-09T06:33:01.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Android中的MotionEvent">
-<meta name="twitter:description" content="运动事件描述了动作的动作代码和一些列的坐标值。动作代码表明了当触点按下或者弹起等引起的状态变化。坐标值描述了位置信息以及以他的运动属性。
-例如，当用户第一次触摸屏幕的时候，系统给窗体发出一个触摸事件，动作代码为ACTION_DOWN，并提供了一些列的坐标值，比如触摸的X、Y坐标，接触区域的压力、尺寸、方向等信息。一些设备能够在同一时间报告多条运动轨迹。多点触控屏幕为每个手指都发出一条运动轨迹。手指">
+<meta name="twitter:title" content="搭建后台技术框架">
+<meta name="twitter:description" content="适用范围针对中小型互联网公司，特别适用于手机App的后台架构，支撑5万日活，满足中小型公司需求
+
+QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大概产生100的请求，那么平均下来，我们系统大概应该支撑的请求为：50000  100 / (4  60 * 60) = 350 qps/s
+业务数据 业务量，我们自己是新闻业务，可能会有其他的业务，比如游戏，商城等等，基本每天新增的业务数据都">
 
 
 
@@ -124,13 +130,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/12/25/Android中的MotionEvent/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/02/09/搭建后台技术框架/"/>
 
 
 
 
 
-  <title> Android中的MotionEvent | fastabler </title>
+  <title> 搭建后台技术框架 | fastabler </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -253,7 +259,7 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2016/12/25/Android中的MotionEvent/">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/09/搭建后台技术框架/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="fastabler">
@@ -277,7 +283,7 @@
             
             
               
-                Android中的MotionEvent
+                搭建后台技术框架
               
             
           </h1>
@@ -292,8 +298,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-25T17:22:03+08:00">
-                2016-12-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-09T14:13:58+08:00">
+                2018-02-09
               </time>
             
 
@@ -328,12 +334,27 @@
       
 
       
-        <p><strong>运动事件描述了动作的动作代码和一些列的坐标值。动作代码表明了当触点按下或者弹起等引起的状态变化。坐标值描述了位置信息以及以他的运动属性。</strong></p>
-<p><strong>例如，当用户第一次触摸屏幕的时候，系统给窗体发出一个触摸事件，动作代码为ACTION_DOWN，并提供了一些列的坐标值，比如触摸的X、Y坐标，接触区域的压力、尺寸、方向等信息。<br>一些设备能够在同一时间报告多条运动轨迹。多点触控屏幕为每个手指都发出一条运动轨迹。手指或者其他能够产生运动轨迹的物体都可以叫做触点。运动事件包含所有触点的信息，即使有些触点自从上次事件之后就没有再移动，这些触点必须是当前处于活动状态的。</strong></p>
-<p><strong>只有触点按下或者抬起的时候才会影响触点的数量，只有动作取消的时候除外。</strong></p>
-<p><strong>每个触点都有一个唯一的id，这个id是在触点第一次按下的时候(动作代码为ACTION_DOWN或者ACTION_POINTER_DOWN)由系统自动分配的。触点的id会一直保持有效，当触点抬起的时候(动作代码为ACTION_UP或者ACTION_POINTER_UP)或者动作取消(动作代码为ACTION_CANCEL)的时候会导致触点的id失效。</strong></p>
-<p><strong>MotionEvent类提供了许多可以查看触点的位置或者其他信息的方式，比如getX(int)、getY(int)、getAxisValue(int)、getPointerId(int)、getToolType(int)。这其中的大部分方法都将触点的索引值作为参数而不是触点的id。在事件中，每个触点的索引号的取值范围是从0到getPointerCount()-1。<br>在一次运动中触点出现的顺序是不确定的。因此，触点的索引值会由于事件的变化而变化，但是只要触点处于活动状态，该触点的id就不会改变。用getPointerId(int)方法可以得到触点的id值，从而根据得到的id值在一连串的动作中来追踪其运动轨迹。然而在连续的运动事件中，应该用findPointerIndex(int)方法通过触点的id值得到触点的索引值。</strong></p>
-<p><strong>为了提高效率，代码为ACTION_MOVE的运动事件可能会将多个运动路径处理成一个。最常用的当前触点的坐标可以通过getX(int)和getY(int)获得。之前的坐标可以通过getHistoricalX(int,int)和getHistoricalY(int,int)获得。这些坐标之所以被成为”历史坐标”是因为这些坐标比当前坐标更早的出现了。要想按照时间顺序处理所有坐标，首先要处理历史坐标，然后再是当前坐标。</strong></p>
+        <h2 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h2><p>针对中小型互联网公司，特别适用于手机App的后台架构，支撑5万日活，满足中小型公司需求</p>
+<blockquote>
+<p>QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大概产生100的请求，那么平均下来，我们系统大概应该支撑的请求为：50000 <em> 100 / (4 </em> 60 * 60) = 350 qps/s</p>
+<p>业务数据 业务量，我们自己是新闻业务，可能会有其他的业务，比如游戏，商城等等，基本每天新增的业务数据都会在同一个量级， 每日10000， 另外跟用户相关的信息也是比较大的一块，比如用户的订阅等行为，一共5万的用户，保存相关信息可能大概需要100条的数据。</p>
+<p>缓存大小 主要业务数据和用户相关的热点数据限时保存在缓存中， 大概需要5个G左右。</p>
+<p>日志大小 用户日志和请求日志。 大概每天3个G左右</p>
+</blockquote>
+<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p>基于阿里云服务搭建</p>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>前期可以单机运行，业务量上来之后集群，使用nginx进行负载均衡，也可以选择阿里云的收费SLB</p>
+<h2 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h2><p>用于保存静态文件，阿里云跟七牛云都可以。一些图片数据如用户头像等由前端直接上传到七牛云，将返回的地址再返回给数据库，图片等大型文件不再经过服务器处理。app的新版本也直接保存在七牛云，更新的时候直接从七牛云下载，减少客户端请求服务器的带宽，可以明显提高访问速度</p>
+<h2 id="分布式调用框架"><a href="#分布式调用框架" class="headerlink" title="分布式调用框架"></a>分布式调用框架</h2><p>可以直接选用dubbo，这个是使用最多应用范围最广的，遇到问题也能快速解决。springcloud目前国内用的较少，而且eureka2.0之后不再开源。也可以选择当当的dubboX</p>
+<h2 id="消息队列MQ"><a href="#消息队列MQ" class="headerlink" title="消息队列MQ"></a>消息队列MQ</h2><p>可选的有： ActiveMQ, 阿里云消息， robbitMQ, 各有好处， 但是考虑到运维的难度，推荐阿里云消息。</p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>使用Redis</p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>主要基于读写分离和主从复制考虑</p>
+<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><p>建议ELK， 可以自动同步数据库，除了搜索引擎的功能外，还可以做日志搜索，监控系统</p>
+<h2 id="一些典型的业务场景说明"><a href="#一些典型的业务场景说明" class="headerlink" title="一些典型的业务场景说明"></a>一些典型的业务场景说明</h2><ul>
+<li>把业务底层做成SOA模块，通过分布式调用框架对外提供服务。</li>
+<li>单独做一个小的系统来运行定时任务</li>
+<li>热点数据放缓存，然后通过MQ来更新缓存</li>
+<li>日志等数据有必要可以考虑上个Mongo</li>
+</ul>
 
       
     </div>
@@ -357,7 +378,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/自定义View/" rel="tag"># 自定义View</a>
+            <a href="/tags/java后台/" rel="tag"># java后台</a>
           
         </div>
       
@@ -366,8 +387,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/12/18/源码解析Android中View的layout布局过程/" rel="next" title="源码解析Android中View的layout布局过程">
-                <i class="fa fa-chevron-left"></i> 源码解析Android中View的layout布局过程
+              <a href="/2017/01/28/android右滑手势返回问题的解决思路/" rel="next" title="android右滑手势返回问题的解决思路">
+                <i class="fa fa-chevron-left"></i> android右滑手势返回问题的解决思路
               </a>
             
           </div>
@@ -375,10 +396,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/12/26/Android中的TouchEvent触摸事件机制/" rel="prev" title="Android中的TouchEvent触摸事件机制">
-                Android中的TouchEvent触摸事件机制 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -425,8 +442,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel sidebar-panel-active">
+      <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="http://fastabler.online/images/53e59d9a3ce6cf6e9c4f4a56f50553f8.jpeg"
@@ -475,6 +501,22 @@
 
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#适用范围"><span class="nav-number">1.</span> <span class="nav-text">适用范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术架构"><span class="nav-number">2.</span> <span class="nav-text">技术架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负载均衡"><span class="nav-number">3.</span> <span class="nav-text">负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CDN"><span class="nav-number">4.</span> <span class="nav-text">CDN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式调用框架"><span class="nav-number">5.</span> <span class="nav-text">分布式调用框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息队列MQ"><span class="nav-number">6.</span> <span class="nav-text">消息队列MQ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存"><span class="nav-number">7.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库"><span class="nav-number">8.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索"><span class="nav-number">9.</span> <span class="nav-text">搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些典型的业务场景说明"><span class="nav-number">10.</span> <span class="nav-text">一些典型的业务场景说明</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
     </div>

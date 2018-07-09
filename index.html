@@ -251,6 +251,145 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/02/09/搭建后台技术框架/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="fastabler">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="http://fastabler.online/images/53e59d9a3ce6cf6e9c4f4a56f50553f8.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="fastabler">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="fastabler" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2018/02/09/搭建后台技术框架/" itemprop="url">
+                  搭建后台技术框架
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-09T14:13:58+08:00">
+                2018-02-09
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h2><p>针对中小型互联网公司，特别适用于手机App的后台架构，支撑5万日活，满足中小型公司需求</p>
+<blockquote>
+<p>QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大概产生100的请求，那么平均下来，我们系统大概应该支撑的请求为：50000 <em> 100 / (4 </em> 60 * 60) = 350 qps/s</p>
+<p>业务数据 业务量，我们自己是新闻业务，可能会有其他的业务，比如游戏，商城等等，基本每天新增的业务数据都会在同一个量级， 每日10000， 另外跟用户相关的信息也是比较大的一块，比如用户的订阅等行为，一共5万的用户，保存相关信息可能大概需要100条的数据。</p>
+<p>缓存大小 主要业务数据和用户相关的热点数据限时保存在缓存中， 大概需要5个G左右。</p>
+<p>日志大小 用户日志和请求日志。 大概每天3个G左右</p>
+</blockquote>
+<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p>基于阿里云服务搭建</p>
+<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>前期可以单机运行，业务量上来之后集群，使用nginx进行负载均衡，也可以选择阿里云的收费SLB</p>
+<h2 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h2><p>用于保存静态文件，阿里云跟七牛云都可以。一些图片数据如用户头像等由前端直接上传到七牛云，将返回的地址再返回给数据库，图片等大型文件不再经过服务器处理。app的新版本也直接保存在七牛云，更新的时候直接从七牛云下载，减少客户端请求服务器的带宽，可以明显提高访问速度</p>
+<h2 id="分布式调用框架"><a href="#分布式调用框架" class="headerlink" title="分布式调用框架"></a>分布式调用框架</h2><p>可以直接选用dubbo，这个是使用最多应用范围最广的，遇到问题也能快速解决。springcloud目前国内用的较少，而且eureka2.0之后不再开源。也可以选择当当的dubboX</p>
+<h2 id="消息队列MQ"><a href="#消息队列MQ" class="headerlink" title="消息队列MQ"></a>消息队列MQ</h2><p>可选的有： ActiveMQ, 阿里云消息， robbitMQ, 各有好处， 但是考虑到运维的难度，推荐阿里云消息。</p>
+<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>使用Redis</p>
+<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>主要基于读写分离和主从复制考虑</p>
+<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><p>建议ELK， 可以自动同步数据库，除了搜索引擎的功能外，还可以做日志搜索，监控系统</p>
+<h2 id="一些典型的业务场景说明"><a href="#一些典型的业务场景说明" class="headerlink" title="一些典型的业务场景说明"></a>一些典型的业务场景说明</h2><ul>
+<li>把业务底层做成SOA模块，通过分布式调用框架对外提供服务。</li>
+<li>单独做一个小的系统来运行定时任务</li>
+<li>热点数据放缓存，然后通过MQ来更新缓存</li>
+<li>日志等数据有必要可以考虑上个Mongo</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/01/28/android右滑手势返回问题的解决思路/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2296,7 +2435,7 @@ android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot; tools:context=
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">9</span>
+                <span class="site-state-item-count">10</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2307,7 +2446,7 @@ android:paddingBottom=&quot;@dimen/activity_vertical_margin&quot; tools:context=
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-count">6</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="java后台," />
+  <meta name="keywords" content="Hexo, NexT" />
 
 
 
@@ -84,25 +84,22 @@
 
 
 
-<meta name="description" content="适用范围针对中小型互联网公司，特别适用于手机App的后台架构，支撑5万日活，满足中小型公司需求
-
-QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大概产生100的请求，那么平均下来，我们系统大概应该支撑的请求为：50000  100 / (4  60 * 60) = 350 qps/s
-业务数据 业务量，我们自己是新闻业务，可能会有其他的业务，比如游戏，商城等等，基本每天新增的业务数据都">
+<meta name="description" content="本文以本地虚拟环境homestead为例，通过安装redis扩展来安装其他的扩展，安装流程基本雷同。
+本地虚拟环境homestead中php环境没有redis扩展的窘境，网上的教程也不通用，因为那些教程都只是针对单一机器单一版本php环境下的安装方法，而homestead安装了多个php版本（针对多个php版本安装，单一php版本安装更简单），安装方式略有不同，怎么办？往下看：
+注意：命令权限不够">
 <meta property="og:type" content="article">
-<meta property="og:title" content="搭建后台技术框架">
-<meta property="og:url" content="http://hjlinfo.top/2018/02/09/搭建后台技术框架/index.html">
+<meta property="og:title" content="Linux安装php拓展教程,以安装php redis为例,适用于所有场景">
+<meta property="og:url" content="http://hjlinfo.top/2018/08/08/Linux安装php拓展教程-以安装php-redis为例-适用于所有场景/index.html">
 <meta property="og:site_name" content="黄金龙的博客">
-<meta property="og:description" content="适用范围针对中小型互联网公司，特别适用于手机App的后台架构，支撑5万日活，满足中小型公司需求
-
-QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大概产生100的请求，那么平均下来，我们系统大概应该支撑的请求为：50000  100 / (4  60 * 60) = 350 qps/s
-业务数据 业务量，我们自己是新闻业务，可能会有其他的业务，比如游戏，商城等等，基本每天新增的业务数据都">
-<meta property="og:updated_time" content="2018-07-09T06:33:01.000Z">
+<meta property="og:description" content="本文以本地虚拟环境homestead为例，通过安装redis扩展来安装其他的扩展，安装流程基本雷同。
+本地虚拟环境homestead中php环境没有redis扩展的窘境，网上的教程也不通用，因为那些教程都只是针对单一机器单一版本php环境下的安装方法，而homestead安装了多个php版本（针对多个php版本安装，单一php版本安装更简单），安装方式略有不同，怎么办？往下看：
+注意：命令权限不够">
+<meta property="og:updated_time" content="2018-08-08T03:11:07.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="搭建后台技术框架">
-<meta name="twitter:description" content="适用范围针对中小型互联网公司，特别适用于手机App的后台架构，支撑5万日活，满足中小型公司需求
-
-QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大概产生100的请求，那么平均下来，我们系统大概应该支撑的请求为：50000  100 / (4  60 * 60) = 350 qps/s
-业务数据 业务量，我们自己是新闻业务，可能会有其他的业务，比如游戏，商城等等，基本每天新增的业务数据都">
+<meta name="twitter:title" content="Linux安装php拓展教程,以安装php redis为例,适用于所有场景">
+<meta name="twitter:description" content="本文以本地虚拟环境homestead为例，通过安装redis扩展来安装其他的扩展，安装流程基本雷同。
+本地虚拟环境homestead中php环境没有redis扩展的窘境，网上的教程也不通用，因为那些教程都只是针对单一机器单一版本php环境下的安装方法，而homestead安装了多个php版本（针对多个php版本安装，单一php版本安装更简单），安装方式略有不同，怎么办？往下看：
+注意：命令权限不够">
 
 
 
@@ -130,13 +127,13 @@ QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大�
 
 
 
-  <link rel="canonical" href="http://hjlinfo.top/2018/02/09/搭建后台技术框架/"/>
+  <link rel="canonical" href="http://hjlinfo.top/2018/08/08/Linux安装php拓展教程-以安装php-redis为例-适用于所有场景/"/>
 
 
 
 
 
-  <title> 搭建后台技术框架 | 黄金龙的博客 </title>
+  <title> Linux安装php拓展教程,以安装php redis为例,适用于所有场景 | 黄金龙的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -259,7 +256,7 @@ QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大�
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://hjlinfo.top/2018/02/09/搭建后台技术框架/">
+  <link itemprop="mainEntityOfPage" href="http://hjlinfo.top/2018/08/08/Linux安装php拓展教程-以安装php-redis为例-适用于所有场景/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="fastabler">
@@ -283,7 +280,7 @@ QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大�
             
             
               
-                搭建后台技术框架
+                Linux安装php拓展教程,以安装php redis为例,适用于所有场景
               
             
           </h1>
@@ -298,8 +295,8 @@ QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大�
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-02-09T14:13:58+08:00">
-                2018-02-09
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2018-08-08T10:59:21+08:00">
+                2018-08-08
               </time>
             
 
@@ -334,27 +331,27 @@ QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大�
       
 
       
-        <h2 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h2><p>针对中小型互联网公司，特别适用于手机App的后台架构，支撑5万日活，满足中小型公司需求</p>
-<blockquote>
-<p>QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大概产生100的请求，那么平均下来，我们系统大概应该支撑的请求为：50000 <em> 100 / (4 </em> 60 * 60) = 350 qps/s</p>
-<p>业务数据 业务量，我们自己是新闻业务，可能会有其他的业务，比如游戏，商城等等，基本每天新增的业务数据都会在同一个量级， 每日10000， 另外跟用户相关的信息也是比较大的一块，比如用户的订阅等行为，一共5万的用户，保存相关信息可能大概需要100条的数据。</p>
-<p>缓存大小 主要业务数据和用户相关的热点数据限时保存在缓存中， 大概需要5个G左右。</p>
-<p>日志大小 用户日志和请求日志。 大概每天3个G左右</p>
-</blockquote>
-<h2 id="技术架构"><a href="#技术架构" class="headerlink" title="技术架构"></a>技术架构</h2><p>基于阿里云服务搭建</p>
-<h2 id="负载均衡"><a href="#负载均衡" class="headerlink" title="负载均衡"></a>负载均衡</h2><p>前期可以单机运行，业务量上来之后集群，使用nginx进行负载均衡，也可以选择阿里云的收费SLB</p>
-<h2 id="CDN"><a href="#CDN" class="headerlink" title="CDN"></a>CDN</h2><p>用于保存静态文件，阿里云跟七牛云都可以。一些图片数据如用户头像等由前端直接上传到七牛云，将返回的地址再返回给数据库，图片等大型文件不再经过服务器处理。app的新版本也直接保存在七牛云，更新的时候直接从七牛云下载，减少客户端请求服务器的带宽，可以明显提高访问速度</p>
-<h2 id="分布式调用框架"><a href="#分布式调用框架" class="headerlink" title="分布式调用框架"></a>分布式调用框架</h2><p>可以直接选用dubbo，这个是使用最多应用范围最广的，遇到问题也能快速解决。springcloud目前国内用的较少，而且eureka2.0之后不再开源。也可以选择当当的dubboX</p>
-<h2 id="消息队列MQ"><a href="#消息队列MQ" class="headerlink" title="消息队列MQ"></a>消息队列MQ</h2><p>可选的有： ActiveMQ, 阿里云消息， robbitMQ, 各有好处， 但是考虑到运维的难度，推荐阿里云消息。</p>
-<h2 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h2><p>使用Redis</p>
-<h2 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h2><p>主要基于读写分离和主从复制考虑</p>
-<h2 id="搜索"><a href="#搜索" class="headerlink" title="搜索"></a>搜索</h2><p>建议ELK， 可以自动同步数据库，除了搜索引擎的功能外，还可以做日志搜索，监控系统</p>
-<h2 id="一些典型的业务场景说明"><a href="#一些典型的业务场景说明" class="headerlink" title="一些典型的业务场景说明"></a>一些典型的业务场景说明</h2><ul>
-<li>把业务底层做成SOA模块，通过分布式调用框架对外提供服务。</li>
-<li>单独做一个小的系统来运行定时任务</li>
-<li>热点数据放缓存，然后通过MQ来更新缓存</li>
-<li>日志等数据有必要可以考虑上个Mongo</li>
-</ul>
+        <p>本文以本地虚拟环境homestead为例，通过安装redis扩展来安装其他的扩展，安装流程基本雷同。</p>
+<p>本地虚拟环境homestead中php环境没有redis扩展的窘境，网上的教程也不通用，因为那些教程都只是针对单一机器单一版本php环境下的安装方法，而homestead安装了多个php版本（针对多个php版本安装，单一php版本安装更简单），安装方式略有不同，怎么办？往下看：</p>
+<p>注意：命令权限不够时请自动在命令前加上sudo前缀提权；教程还要求你会使用vi编辑器简单地写入文件内容（当然你有其它方法创建文件内容也可以）。</p>
+<h2 id="使用vagrant命令的ssh选项连接到homestead"><a href="#使用vagrant命令的ssh选项连接到homestead" class="headerlink" title="使用vagrant命令的ssh选项连接到homestead"></a>使用vagrant命令的ssh选项连接到homestead</h2><p><code>vagrant ssh</code></p>
+<h2 id="下载编译php的redis扩展"><a href="#下载编译php的redis扩展" class="headerlink" title="下载编译php的redis扩展"></a>下载编译php的redis扩展</h2><p><code>$ git clone https://github.com/phpredis/phpredis.git</code><br><code>$ cd phpredis</code><br><code>$ /usr/bin/phpize7.1</code>（不同php版本的情况下phpize版本不同，如果是单一版本，那么只有一个phpize<br><code>$ ./configure --with-php-config=/usr/bin/php-config7.1</code>（这里边也需要根据情况指定php-config的版本，且和phpize的版本保持一致。如果只有一个版本，那么只有一个php-config）<br><code>$ make &amp;&amp; make install</code></p>
+<p>编译完成后，redis的php扩展在module目录中，它的文件名是redis.so</p>
+<h2 id="查看php的extension-dir"><a href="#查看php的extension-dir" class="headerlink" title="查看php的extension_dir"></a>查看php的extension_dir</h2><p><code>php -i|grep extension_dir</code></p>
+<p>在小黑窗中可能会见到如下字段</p>
+<p><code>extension_dir =&gt; /usr/lib/php/20160303 =&gt; /usr/lib/php/20160303</code></p>
+<p>这说明php的扩展目录是/usr/lib/php/20160303</p>
+<p>或者你用phpinfo()输出一个页面，在里面找extension_dir也可以找到</p>
+<h2 id="把redis-so扩展模块移入php扩展目录中"><a href="#把redis-so扩展模块移入php扩展目录中" class="headerlink" title="把redis.so扩展模块移入php扩展目录中"></a>把redis.so扩展模块移入php扩展目录中</h2><p><code>sudo mv ./module/redis.so  /usr/lib/php/20160303</code></p>
+<p>注意，前提要求当前工作目录是在刚才编译的phpredis目录中</p>
+<h2 id="添加php配置文件的ini文件"><a href="#添加php配置文件的ini文件" class="headerlink" title="添加php配置文件的ini文件"></a>添加php配置文件的ini文件</h2><p>创建一个文件</p>
+<p><code>sudo touch /etc/php/7.1/fpm/conf.d/20-redis.ini</code><br>使用vi编辑器写入如下内容:</p>
+<p><code>extension=redis.so</code></p>
+<p>记得使用vi编辑器时使用：wq命令保存</p>
+<h2 id="万事大吉，重启php-fpm"><a href="#万事大吉，重启php-fpm" class="headerlink" title="万事大吉，重启php-fpm"></a>万事大吉，重启php-fpm</h2><p>命令：</p>
+<p><code>/etc/phpredis$ sudo service php7.1-fpm restart</code> </p>
+<p>再次在网页中使用phpinfo()时就会发现，redis扩展出现了，new Redis()可用了。</p>
+<p>同理，什么mongodb的扩展啊什么的，也都能够通过类似的方法完成安装</p>
 
       
     </div>
@@ -376,19 +373,13 @@ QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大�
 
     <footer class="post-footer">
       
-        <div class="post-tags">
-          
-            <a href="/tags/java后台/" rel="tag"># java后台</a>
-          
-        </div>
-      
 
       
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/01/28/android右滑手势返回问题的解决思路/" rel="next" title="android右滑手势返回问题的解决思路">
-                <i class="fa fa-chevron-left"></i> android右滑手势返回问题的解决思路
+              <a href="/2017/04/10/SQL优化/" rel="next" title="数据库优化方案">
+                <i class="fa fa-chevron-left"></i> 数据库优化方案
               </a>
             
           </div>
@@ -465,7 +456,7 @@ QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大�
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">10</span>
+                <span class="site-state-item-count">14</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -476,7 +467,7 @@ QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大�
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -511,7 +502,7 @@ QPS， 如果是5万日活，使用集中在每天的4小时，每个用户大�
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#适用范围"><span class="nav-number">1.</span> <span class="nav-text">适用范围</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#技术架构"><span class="nav-number">2.</span> <span class="nav-text">技术架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#负载均衡"><span class="nav-number">3.</span> <span class="nav-text">负载均衡</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CDN"><span class="nav-number">4.</span> <span class="nav-text">CDN</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分布式调用框架"><span class="nav-number">5.</span> <span class="nav-text">分布式调用框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#消息队列MQ"><span class="nav-number">6.</span> <span class="nav-text">消息队列MQ</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缓存"><span class="nav-number">7.</span> <span class="nav-text">缓存</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据库"><span class="nav-number">8.</span> <span class="nav-text">数据库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#搜索"><span class="nav-number">9.</span> <span class="nav-text">搜索</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一些典型的业务场景说明"><span class="nav-number">10.</span> <span class="nav-text">一些典型的业务场景说明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#使用vagrant命令的ssh选项连接到homestead"><span class="nav-number">1.</span> <span class="nav-text">使用vagrant命令的ssh选项连接到homestead</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下载编译php的redis扩展"><span class="nav-number">2.</span> <span class="nav-text">下载编译php的redis扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看php的extension-dir"><span class="nav-number">3.</span> <span class="nav-text">查看php的extension_dir</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#把redis-so扩展模块移入php扩展目录中"><span class="nav-number">4.</span> <span class="nav-text">把redis.so扩展模块移入php扩展目录中</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#添加php配置文件的ini文件"><span class="nav-number">5.</span> <span class="nav-text">添加php配置文件的ini文件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#万事大吉，重启php-fpm"><span class="nav-number">6.</span> <span class="nav-text">万事大吉，重启php-fpm</span></a></li></ol></div>
             
 
           </div>

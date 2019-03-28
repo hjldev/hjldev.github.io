@@ -6,15 +6,15 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,52 +63,39 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="SQL," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="SQL,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
 
 
 
-<meta name="description" content="SQL 优化负向查询不能使用索引1select name from user where id not in (1,3,4);
-应该修改为:
-1select name from user where id in (2,5,6);
-前导模糊查询不能使用索引如:
-1select name from user where name like &apos;%zhangsan&apos;
-非前导则可以:1select name">
+<meta name="description" content="SQL 优化负向查询不能使用索引1select name from user where id not in (1,3,4); 应该修改为: 1select name from user where id in (2,5,6); 前导模糊查询不能使用索引如: 1select name from user where name like &apos;%zhangsan&apos; 非前导则可以:1select name">
+<meta name="keywords" content="SQL">
 <meta property="og:type" content="article">
 <meta property="og:title" content="数据库优化方案">
 <meta property="og:url" content="http://hjlinfo.top/2017/04/10/SQL优化/index.html">
 <meta property="og:site_name" content="黄金龙的博客">
-<meta property="og:description" content="SQL 优化负向查询不能使用索引1select name from user where id not in (1,3,4);
-应该修改为:
-1select name from user where id in (2,5,6);
-前导模糊查询不能使用索引如:
-1select name from user where name like &apos;%zhangsan&apos;
-非前导则可以:1select name">
+<meta property="og:description" content="SQL 优化负向查询不能使用索引1select name from user where id not in (1,3,4); 应该修改为: 1select name from user where id in (2,5,6); 前导模糊查询不能使用索引如: 1select name from user where name like &apos;%zhangsan&apos; 非前导则可以:1select name">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-07-10T05:43:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库优化方案">
-<meta name="twitter:description" content="SQL 优化负向查询不能使用索引1select name from user where id not in (1,3,4);
-应该修改为:
-1select name from user where id in (2,5,6);
-前导模糊查询不能使用索引如:
-1select name from user where name like &apos;%zhangsan&apos;
-非前导则可以:1select name">
+<meta name="twitter:description" content="SQL 优化负向查询不能使用索引1select name from user where id not in (1,3,4); 应该修改为: 1select name from user where id in (2,5,6); 前导模糊查询不能使用索引如: 1select name from user where name like &apos;%zhangsan&apos; 非前导则可以:1select name">
 
 
 
@@ -136,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://hjlinfo.top/2017/04/10/SQL优化/"/>
+  <link rel="canonical" href="http://hjlinfo.top/2017/04/10/SQL优化/">
 
 
 
@@ -181,7 +168,7 @@
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">黄金龙的博客</span>
       <span class="logo-line-after"><i></i></span>
@@ -210,7 +197,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -220,7 +207,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -230,7 +217,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -269,14 +256,14 @@
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="fastabler">
-    <meta itemprop="description" content="">
+    <meta itemprop="description" content>
     <meta itemprop="image" content="http://fastabler.online/images/53e59d9a3ce6cf6e9c4f4a56f50553f8.jpeg">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="黄金龙的博客">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="黄金龙的博客" src="">
+      <img style="display:none;" itemprop="url image" alt="黄金龙的博客" src>
     </span>
   </span>
 
@@ -340,33 +327,33 @@
       
 
       
-        <h1 id="SQL-优化"><a href="#SQL-优化" class="headerlink" title="SQL 优化"></a>SQL 优化</h1><h3 id="负向查询不能使用索引"><a href="#负向查询不能使用索引" class="headerlink" title="负向查询不能使用索引"></a>负向查询不能使用索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> <span class="keyword">not</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>);</div></pre></td></tr></table></figure>
+        <h1 id="SQL-优化"><a href="#SQL-优化" class="headerlink" title="SQL 优化"></a>SQL 优化</h1><h3 id="负向查询不能使用索引"><a href="#负向查询不能使用索引" class="headerlink" title="负向查询不能使用索引"></a>负向查询不能使用索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">id</span> <span class="keyword">not</span> <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>);</span><br></pre></td></tr></table></figure>
 <p>应该修改为:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select name from user where id in (2,5,6);</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name from user where id in (2,5,6);</span><br></pre></td></tr></table></figure>
 <h3 id="前导模糊查询不能使用索引"><a href="#前导模糊查询不能使用索引" class="headerlink" title="前导模糊查询不能使用索引"></a>前导模糊查询不能使用索引</h3><p>如:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'%zhangsan'</span></div></pre></td></tr></table></figure>
-<p>非前导则可以:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'zhangsan%'</span></div></pre></td></tr></table></figure></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'%zhangsan'</span></span><br></pre></td></tr></table></figure>
+<p>非前导则可以:<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> <span class="keyword">name</span> <span class="keyword">like</span> <span class="string">'zhangsan%'</span></span><br></pre></td></tr></table></figure></p>
 <p>建议可以考虑使用 <code>Lucene</code> 等全文索引工具来代替频繁的模糊查询。</p>
 <h3 id="数据区分不明显的不建议创建索引"><a href="#数据区分不明显的不建议创建索引" class="headerlink" title="数据区分不明显的不建议创建索引"></a>数据区分不明显的不建议创建索引</h3><p>如 user 表中的性别字段，可以明显区分的才建议创建索引，如身份证等字段。</p>
 <h3 id="字段的默认值不要为-null"><a href="#字段的默认值不要为-null" class="headerlink" title="字段的默认值不要为 null"></a>字段的默认值不要为 null</h3><p>这样会带来和预期不一致的查询结果。</p>
-<h3 id="在字段上进行计算不能命中索引"><a href="#在字段上进行计算不能命中索引" class="headerlink" title="在字段上进行计算不能命中索引"></a>在字段上进行计算不能命中索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> FROM_UNIXTIME(create_time) &lt; <span class="keyword">CURDATE</span>();</div></pre></td></tr></table></figure>
+<h3 id="在字段上进行计算不能命中索引"><a href="#在字段上进行计算不能命中索引" class="headerlink" title="在字段上进行计算不能命中索引"></a>在字段上进行计算不能命中索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> FROM_UNIXTIME(create_time) &lt; <span class="keyword">CURDATE</span>();</span><br></pre></td></tr></table></figure>
 <p>应该修改为:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> create_time &lt; FROM_UNIXTIME(<span class="keyword">CURDATE</span>());</div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> create_time &lt; FROM_UNIXTIME(<span class="keyword">CURDATE</span>());</span><br></pre></td></tr></table></figure>
 <h3 id="最左前缀问题"><a href="#最左前缀问题" class="headerlink" title="最左前缀问题"></a>最左前缀问题</h3><p>如果给 user 表中的 username pwd 字段创建了复合索引那么使用以下SQL 都是可以命中索引:</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> username <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> username=<span class="string">'zhangsan'</span> <span class="keyword">and</span> pwd =<span class="string">'axsedf1sd'</span></div><div class="line"></div><div class="line"><span class="keyword">select</span> username <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> pwd =<span class="string">'axsedf1sd'</span> <span class="keyword">and</span> username=<span class="string">'zhangsan'</span></div><div class="line"></div><div class="line"><span class="keyword">select</span> username <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> username=<span class="string">'zhangsan'</span></div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> username <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> username=<span class="string">'zhangsan'</span> <span class="keyword">and</span> pwd =<span class="string">'axsedf1sd'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> username <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> pwd =<span class="string">'axsedf1sd'</span> <span class="keyword">and</span> username=<span class="string">'zhangsan'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> username <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> username=<span class="string">'zhangsan'</span></span><br></pre></td></tr></table></figure>
 <p>但是使用</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> username <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> pwd =<span class="string">'axsedf1sd'</span></div></pre></td></tr></table></figure>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> username <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> pwd =<span class="string">'axsedf1sd'</span></span><br></pre></td></tr></table></figure>
 <p>是不能命中索引的。</p>
-<h3 id="如果明确知道只有一条记录返回"><a href="#如果明确知道只有一条记录返回" class="headerlink" title="如果明确知道只有一条记录返回"></a>如果明确知道只有一条记录返回</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> username=<span class="string">'zhangsan'</span> <span class="keyword">limit</span> <span class="number">1</span></div></pre></td></tr></table></figure>
+<h3 id="如果明确知道只有一条记录返回"><a href="#如果明确知道只有一条记录返回" class="headerlink" title="如果明确知道只有一条记录返回"></a>如果明确知道只有一条记录返回</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> username=<span class="string">'zhangsan'</span> <span class="keyword">limit</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
 <p>可以提高效率，可以让数据库停止游标移动。</p>
-<h3 id="不要让数据库帮我们做强制类型转换"><a href="#不要让数据库帮我们做强制类型转换" class="headerlink" title="不要让数据库帮我们做强制类型转换"></a>不要让数据库帮我们做强制类型转换</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> telno=<span class="number">18722222222</span></div></pre></td></tr></table></figure>
+<h3 id="不要让数据库帮我们做强制类型转换"><a href="#不要让数据库帮我们做强制类型转换" class="headerlink" title="不要让数据库帮我们做强制类型转换"></a>不要让数据库帮我们做强制类型转换</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">name</span> <span class="keyword">from</span> <span class="keyword">user</span> <span class="keyword">where</span> telno=<span class="number">18722222222</span></span><br></pre></td></tr></table></figure>
 <p>这样虽然可以查出数据，但是会导致全表扫描。</p>
-<p>需要修改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">select name from user where telno=&apos;18722222222&apos;</div></pre></td></tr></table></figure></p>
+<p>需要修改为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">select name from user where telno=&apos;18722222222&apos;</span><br></pre></td></tr></table></figure></p>
 <h3 id="如果需要进行-join-的字段两表的字段类型要相同"><a href="#如果需要进行-join-的字段两表的字段类型要相同" class="headerlink" title="如果需要进行 join 的字段两表的字段类型要相同"></a>如果需要进行 join 的字段两表的字段类型要相同</h3><p>不然也不会命中索引。</p>
 <h1 id="数据库水平垂直拆分"><a href="#数据库水平垂直拆分" class="headerlink" title="数据库水平垂直拆分"></a>数据库水平垂直拆分</h1><p>当数据库量非常大的时候，DB 已经成为系统瓶颈时就可以考虑进行水平垂直拆分了。</p>
 <h2 id="水平拆分"><a href="#水平拆分" class="headerlink" title="水平拆分"></a>水平拆分</h2><p>一般水平拆分是根据表中的某一字段(通常是主键 ID )取模处理，将一张表的数据拆分到多个表中。这样每张表的表结构是相同的但是数据不同。</p>
 <p>不但可以通过 ID 取模分表还可以通过时间分表，比如每月生成一张表。<br>按照范围分表也是可行的:一张表只存储 <code>0~1000W</code>的数据，超过只就进行分表，这样分表的优点是扩展灵活，但是存在热点数据。</p>
-<p>按照取模分表拆分之后我们的查询、修改、删除也都是取模。比如新增一条数据的时候往往需要一张临时表来生成 ID,然后根据生成的 ID 取模计算出需要写入的是哪张表(也可以使用<a href="https://github.com/crossoverJie/Java-Interview/blob/master/MD/ID-generator.md" target="_blank" rel="external">分布式 ID 生成器</a>来生成 ID)。</p>
+<p>按照取模分表拆分之后我们的查询、修改、删除也都是取模。比如新增一条数据的时候往往需要一张临时表来生成 ID,然后根据生成的 ID 取模计算出需要写入的是哪张表(也可以使用<a href="https://github.com/crossoverJie/Java-Interview/blob/master/MD/ID-generator.md" target="_blank" rel="noopener">分布式 ID 生成器</a>来生成 ID)。</p>
 <p>分表之后不能避免的就是查询要比以前复杂，通常不建议 <code>join</code> ，一般的做法是做两次查询。</p>
 <h2 id="垂直拆分"><a href="#垂直拆分" class="headerlink" title="垂直拆分"></a>垂直拆分</h2><p>当一张表的字段过多时则可以考虑垂直拆分。<br>通常是将一张表的字段才分为主表以及扩展表，使用频次较高的字段在一张表，其余的在一张表。</p>
 <p>这里的多表查询也不建议使用 <code>join</code> ，依然建议使用两次查询。</p>
@@ -416,8 +403,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/08/08/Linux安装拓展教程-以安装php-redis为例-适用于所有场景/" rel="prev" title="Linux安装php拓展教程,以安装php redis为例,适用于所有场景">
-                Linux安装php拓展教程,以安装php redis为例,适用于所有场景 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/06/28/使用容器jenkins-docker自动化部署项目/" rel="prev" title="使用容器jenkins+docker自动化部署项目">
+                使用容器jenkins+docker自动化部署项目 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -466,7 +453,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -477,9 +464,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://fastabler.online/images/53e59d9a3ce6cf6e9c4f4a56f50553f8.jpeg"
-               alt="fastabler" />
+          <img class="site-author-image" itemprop="image" src="http://fastabler.online/images/53e59d9a3ce6cf6e9c4f4a56f50553f8.jpeg" alt="fastabler">
           <p class="site-author-name" itemprop="name">fastabler</p>
           <p class="site-description motion-element" itemprop="description">Efforts can only pass,hard to be excellent.</p>
         </div>
@@ -488,7 +473,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -534,7 +519,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-优化"><span class="nav-number">1.</span> <span class="nav-text">SQL 优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#负向查询不能使用索引"><span class="nav-number">1.0.1.</span> <span class="nav-text">负向查询不能使用索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前导模糊查询不能使用索引"><span class="nav-number">1.0.2.</span> <span class="nav-text">前导模糊查询不能使用索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据区分不明显的不建议创建索引"><span class="nav-number">1.0.3.</span> <span class="nav-text">数据区分不明显的不建议创建索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段的默认值不要为-null"><span class="nav-number">1.0.4.</span> <span class="nav-text">字段的默认值不要为 null</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在字段上进行计算不能命中索引"><span class="nav-number">1.0.5.</span> <span class="nav-text">在字段上进行计算不能命中索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最左前缀问题"><span class="nav-number">1.0.6.</span> <span class="nav-text">最左前缀问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果明确知道只有一条记录返回"><span class="nav-number">1.0.7.</span> <span class="nav-text">如果明确知道只有一条记录返回</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要让数据库帮我们做强制类型转换"><span class="nav-number">1.0.8.</span> <span class="nav-text">不要让数据库帮我们做强制类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果需要进行-join-的字段两表的字段类型要相同"><span class="nav-number">1.0.9.</span> <span class="nav-text">如果需要进行 join 的字段两表的字段类型要相同</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库水平垂直拆分"><span class="nav-number">2.</span> <span class="nav-text">数据库水平垂直拆分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#水平拆分"><span class="nav-number">2.1.</span> <span class="nav-text">水平拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垂直拆分"><span class="nav-number">2.2.</span> <span class="nav-text">垂直拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拆分之后带来的问题"><span class="nav-number">2.3.</span> <span class="nav-text">拆分之后带来的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两段提交"><span class="nav-number">2.3.1.</span> <span class="nav-text">两段提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终一致性"><span class="nav-number">2.3.2.</span> <span class="nav-text">最终一致性</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#SQL-优化"><span class="nav-number">1.</span> <span class="nav-text">SQL 优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#负向查询不能使用索引"><span class="nav-number">1.0.1.</span> <span class="nav-text">负向查询不能使用索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#前导模糊查询不能使用索引"><span class="nav-number">1.0.2.</span> <span class="nav-text">前导模糊查询不能使用索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数据区分不明显的不建议创建索引"><span class="nav-number">1.0.3.</span> <span class="nav-text">数据区分不明显的不建议创建索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#字段的默认值不要为-null"><span class="nav-number">1.0.4.</span> <span class="nav-text">字段的默认值不要为 null</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#在字段上进行计算不能命中索引"><span class="nav-number">1.0.5.</span> <span class="nav-text">在字段上进行计算不能命中索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最左前缀问题"><span class="nav-number">1.0.6.</span> <span class="nav-text">最左前缀问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果明确知道只有一条记录返回"><span class="nav-number">1.0.7.</span> <span class="nav-text">如果明确知道只有一条记录返回</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不要让数据库帮我们做强制类型转换"><span class="nav-number">1.0.8.</span> <span class="nav-text">不要让数据库帮我们做强制类型转换</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如果需要进行-join-的字段两表的字段类型要相同"><span class="nav-number">1.0.9.</span> <span class="nav-text">如果需要进行 join 的字段两表的字段类型要相同</span></a></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#数据库水平垂直拆分"><span class="nav-number">2.</span> <span class="nav-text">数据库水平垂直拆分</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#水平拆分"><span class="nav-number">2.1.</span> <span class="nav-text">水平拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#垂直拆分"><span class="nav-number">2.2.</span> <span class="nav-text">垂直拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#拆分之后带来的问题"><span class="nav-number">2.3.</span> <span class="nav-text">拆分之后带来的问题</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#两段提交"><span class="nav-number">2.3.1.</span> <span class="nav-text">两段提交</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#最终一致性"><span class="nav-number">2.3.2.</span> <span class="nav-text">最终一致性</span></a></li></ol></li></ol></li></div>
             
 
           </div>
@@ -552,10 +537,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

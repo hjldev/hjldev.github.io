@@ -6,15 +6,15 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,43 +63,38 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="Hexo, NexT" />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="Hexo, NexT">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
 
 
 
-<meta name="description" content="本文以本地虚拟环境homestead为例，通过安装redis扩展来安装其他的扩展，安装流程基本雷同。
-本地虚拟环境homestead中php环境没有redis扩展的窘境，网上的教程也不通用，因为那些教程都只是针对单一机器单一版本php环境下的安装方法，而homestead安装了多个php版本（针对多个php版本安装，单一php版本安装更简单），安装方式略有不同，怎么办？往下看：
-注意：命令权限不够">
+<meta name="description" content="本文以本地虚拟环境homestead为例，通过安装redis扩展来安装其他的扩展，安装流程基本雷同。 本地虚拟环境homestead中php环境没有redis扩展的窘境，网上的教程也不通用，因为那些教程都只是针对单一机器单一版本php环境下的安装方法，而homestead安装了多个php版本（针对多个php版本安装，单一php版本安装更简单），安装方式略有不同，怎么办？往下看： 注意：命令权限不够">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux安装php拓展教程,以安装php redis为例,适用于所有场景">
 <meta property="og:url" content="http://hjlinfo.top/2018/08/08/Linux安装拓展教程-以安装php-redis为例-适用于所有场景/index.html">
 <meta property="og:site_name" content="黄金龙的博客">
-<meta property="og:description" content="本文以本地虚拟环境homestead为例，通过安装redis扩展来安装其他的扩展，安装流程基本雷同。
-本地虚拟环境homestead中php环境没有redis扩展的窘境，网上的教程也不通用，因为那些教程都只是针对单一机器单一版本php环境下的安装方法，而homestead安装了多个php版本（针对多个php版本安装，单一php版本安装更简单），安装方式略有不同，怎么办？往下看：
-注意：命令权限不够">
+<meta property="og:description" content="本文以本地虚拟环境homestead为例，通过安装redis扩展来安装其他的扩展，安装流程基本雷同。 本地虚拟环境homestead中php环境没有redis扩展的窘境，网上的教程也不通用，因为那些教程都只是针对单一机器单一版本php环境下的安装方法，而homestead安装了多个php版本（针对多个php版本安装，单一php版本安装更简单），安装方式略有不同，怎么办？往下看： 注意：命令权限不够">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2018-08-08T03:11:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux安装php拓展教程,以安装php redis为例,适用于所有场景">
-<meta name="twitter:description" content="本文以本地虚拟环境homestead为例，通过安装redis扩展来安装其他的扩展，安装流程基本雷同。
-本地虚拟环境homestead中php环境没有redis扩展的窘境，网上的教程也不通用，因为那些教程都只是针对单一机器单一版本php环境下的安装方法，而homestead安装了多个php版本（针对多个php版本安装，单一php版本安装更简单），安装方式略有不同，怎么办？往下看：
-注意：命令权限不够">
+<meta name="twitter:description" content="本文以本地虚拟环境homestead为例，通过安装redis扩展来安装其他的扩展，安装流程基本雷同。 本地虚拟环境homestead中php环境没有redis扩展的窘境，网上的教程也不通用，因为那些教程都只是针对单一机器单一版本php环境下的安装方法，而homestead安装了多个php版本（针对多个php版本安装，单一php版本安装更简单），安装方式略有不同，怎么办？往下看： 注意：命令权限不够">
 
 
 
@@ -127,7 +122,7 @@
 
 
 
-  <link rel="canonical" href="http://hjlinfo.top/2018/08/08/Linux安装拓展教程-以安装php-redis为例-适用于所有场景/"/>
+  <link rel="canonical" href="http://hjlinfo.top/2018/08/08/Linux安装拓展教程-以安装php-redis为例-适用于所有场景/">
 
 
 
@@ -172,7 +167,7 @@
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">黄金龙的博客</span>
       <span class="logo-line-after"><i></i></span>
@@ -201,7 +196,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -211,7 +206,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -221,7 +216,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -260,14 +255,14 @@
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="fastabler">
-    <meta itemprop="description" content="">
+    <meta itemprop="description" content>
     <meta itemprop="image" content="http://fastabler.online/images/53e59d9a3ce6cf6e9c4f4a56f50553f8.jpeg">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="黄金龙的博客">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="黄金龙的博客" src="">
+      <img style="display:none;" itemprop="url image" alt="黄金龙的博客" src>
     </span>
   </span>
 
@@ -378,8 +373,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2017/04/10/SQL优化/" rel="next" title="数据库优化方案">
-                <i class="fa fa-chevron-left"></i> 数据库优化方案
+              <a href="/2018/06/28/使用容器jenkins-docker自动化部署项目/" rel="next" title="使用容器jenkins+docker自动化部署项目">
+                <i class="fa fa-chevron-left"></i> 使用容器jenkins+docker自动化部署项目
               </a>
             
           </div>
@@ -434,7 +429,7 @@
 
       
         <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
             文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview">
@@ -445,9 +440,7 @@
 
       <section class="site-overview sidebar-panel">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://fastabler.online/images/53e59d9a3ce6cf6e9c4f4a56f50553f8.jpeg"
-               alt="fastabler" />
+          <img class="site-author-image" itemprop="image" src="http://fastabler.online/images/53e59d9a3ce6cf6e9c4f4a56f50553f8.jpeg" alt="fastabler">
           <p class="site-author-name" itemprop="name">fastabler</p>
           <p class="site-description motion-element" itemprop="description">Efforts can only pass,hard to be excellent.</p>
         </div>
@@ -456,7 +449,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -520,10 +513,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

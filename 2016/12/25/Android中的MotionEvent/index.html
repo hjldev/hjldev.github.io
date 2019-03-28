@@ -6,15 +6,15 @@
 
 
 <html class="theme-next pisces use-motion" lang="zh-Hans">
-<head>
-  <meta charset="UTF-8"/>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
 
 
-<meta http-equiv="Cache-Control" content="no-transform" />
-<meta http-equiv="Cache-Control" content="no-siteapp" />
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
 
 
 
@@ -29,7 +29,7 @@
 
   
   
-  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
 
 
 
@@ -63,40 +63,39 @@
 
 
 
-<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
 
-<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
-
-
-  <meta name="keywords" content="自定义View," />
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css">
 
 
+  <meta name="keywords" content="自定义View,">
 
 
 
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0">
 
 
 
 
 
 
-<meta name="description" content="运动事件描述了动作的动作代码和一些列的坐标值。动作代码表明了当触点按下或者弹起等引起的状态变化。坐标值描述了位置信息以及以他的运动属性。
-例如，当用户第一次触摸屏幕的时候，系统给窗体发出一个触摸事件，动作代码为ACTION_DOWN，并提供了一些列的坐标值，比如触摸的X、Y坐标，接触区域的压力、尺寸、方向等信息。一些设备能够在同一时间报告多条运动轨迹。多点触控屏幕为每个手指都发出一条运动轨迹。手指">
+<meta name="description" content="运动事件描述了动作的动作代码和一些列的坐标值。动作代码表明了当触点按下或者弹起等引起的状态变化。坐标值描述了位置信息以及以他的运动属性。 例如，当用户第一次触摸屏幕的时候，系统给窗体发出一个触摸事件，动作代码为ACTION_DOWN，并提供了一些列的坐标值，比如触摸的X、Y坐标，接触区域的压力、尺寸、方向等信息。一些设备能够在同一时间报告多条运动轨迹。多点触控屏幕为每个手指都发出一条运动轨迹。手指">
+<meta name="keywords" content="自定义View">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Android中的MotionEvent">
 <meta property="og:url" content="http://hjlinfo.top/2016/12/25/Android中的MotionEvent/index.html">
 <meta property="og:site_name" content="黄金龙的博客">
-<meta property="og:description" content="运动事件描述了动作的动作代码和一些列的坐标值。动作代码表明了当触点按下或者弹起等引起的状态变化。坐标值描述了位置信息以及以他的运动属性。
-例如，当用户第一次触摸屏幕的时候，系统给窗体发出一个触摸事件，动作代码为ACTION_DOWN，并提供了一些列的坐标值，比如触摸的X、Y坐标，接触区域的压力、尺寸、方向等信息。一些设备能够在同一时间报告多条运动轨迹。多点触控屏幕为每个手指都发出一条运动轨迹。手指">
+<meta property="og:description" content="运动事件描述了动作的动作代码和一些列的坐标值。动作代码表明了当触点按下或者弹起等引起的状态变化。坐标值描述了位置信息以及以他的运动属性。 例如，当用户第一次触摸屏幕的时候，系统给窗体发出一个触摸事件，动作代码为ACTION_DOWN，并提供了一些列的坐标值，比如触摸的X、Y坐标，接触区域的压力、尺寸、方向等信息。一些设备能够在同一时间报告多条运动轨迹。多点触控屏幕为每个手指都发出一条运动轨迹。手指">
+<meta property="og:locale" content="zh-Hans">
 <meta property="og:updated_time" content="2017-02-11T09:27:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Android中的MotionEvent">
-<meta name="twitter:description" content="运动事件描述了动作的动作代码和一些列的坐标值。动作代码表明了当触点按下或者弹起等引起的状态变化。坐标值描述了位置信息以及以他的运动属性。
-例如，当用户第一次触摸屏幕的时候，系统给窗体发出一个触摸事件，动作代码为ACTION_DOWN，并提供了一些列的坐标值，比如触摸的X、Y坐标，接触区域的压力、尺寸、方向等信息。一些设备能够在同一时间报告多条运动轨迹。多点触控屏幕为每个手指都发出一条运动轨迹。手指">
+<meta name="twitter:description" content="运动事件描述了动作的动作代码和一些列的坐标值。动作代码表明了当触点按下或者弹起等引起的状态变化。坐标值描述了位置信息以及以他的运动属性。 例如，当用户第一次触摸屏幕的时候，系统给窗体发出一个触摸事件，动作代码为ACTION_DOWN，并提供了一些列的坐标值，比如触摸的X、Y坐标，接触区域的压力、尺寸、方向等信息。一些设备能够在同一时间报告多条运动轨迹。多点触控屏幕为每个手指都发出一条运动轨迹。手指">
 
 
 
@@ -124,7 +123,7 @@
 
 
 
-  <link rel="canonical" href="http://hjlinfo.top/2016/12/25/Android中的MotionEvent/"/>
+  <link rel="canonical" href="http://hjlinfo.top/2016/12/25/Android中的MotionEvent/">
 
 
 
@@ -169,7 +168,7 @@
   
 
   <div class="custom-logo-site-title">
-    <a href="/"  class="brand" rel="start">
+    <a href="/" class="brand" rel="start">
       <span class="logo-line-before"><i></i></span>
       <span class="site-title">黄金龙的博客</span>
       <span class="logo-line-after"><i></i></span>
@@ -198,7 +197,7 @@
         <li class="menu-item menu-item-home">
           <a href="/" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
             
             首页
           </a>
@@ -208,7 +207,7 @@
         <li class="menu-item menu-item-archives">
           <a href="/archives" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
             
             归档
           </a>
@@ -218,7 +217,7 @@
         <li class="menu-item menu-item-tags">
           <a href="/tags" rel="section">
             
-              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
             
             标签
           </a>
@@ -257,14 +256,14 @@
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
     <meta itemprop="name" content="fastabler">
-    <meta itemprop="description" content="">
+    <meta itemprop="description" content>
     <meta itemprop="image" content="http://fastabler.online/images/53e59d9a3ce6cf6e9c4f4a56f50553f8.jpeg">
   </span>
 
   <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
     <meta itemprop="name" content="黄金龙的博客">
     <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="黄金龙的博客" src="">
+      <img style="display:none;" itemprop="url image" alt="黄金龙的博客" src>
     </span>
   </span>
 
@@ -428,9 +427,7 @@
 
       <section class="site-overview sidebar-panel sidebar-panel-active">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
-          <img class="site-author-image" itemprop="image"
-               src="http://fastabler.online/images/53e59d9a3ce6cf6e9c4f4a56f50553f8.jpeg"
-               alt="fastabler" />
+          <img class="site-author-image" itemprop="image" src="http://fastabler.online/images/53e59d9a3ce6cf6e9c4f4a56f50553f8.jpeg" alt="fastabler">
           <p class="site-author-name" itemprop="name">fastabler</p>
           <p class="site-description motion-element" itemprop="description">Efforts can only pass,hard to be excellent.</p>
         </div>
@@ -439,7 +436,7 @@
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">14</span>
+                <span class="site-state-item-count">15</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -487,10 +484,10 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright" >
+        <div class="copyright">
   
   &copy; 
-  <span itemprop="copyrightYear">2018</span>
+  <span itemprop="copyrightYear">2019</span>
   <span class="with-love">
     <i class="fa fa-heart"></i>
   </span>

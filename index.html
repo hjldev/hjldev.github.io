@@ -679,6 +679,207 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://hjlinfo.top/2017/04/01/Linux常用命令/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="fastabler">
+    <meta itemprop="description" content>
+    <meta itemprop="image" content="http://fastabler.online/images/53e59d9a3ce6cf6e9c4f4a56f50553f8.jpeg">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="黄金龙的博客">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="黄金龙的博客" src>
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/04/01/Linux常用命令/" itemprop="url">
+                  Linux常用命令
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-04-01T21:39:27+08:00">
+                2017-04-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Linux常用命令"><a href="#Linux常用命令" class="headerlink" title="Linux常用命令"></a>Linux常用命令</h1><h2 id="系统服务管理"><a href="#系统服务管理" class="headerlink" title="系统服务管理"></a>系统服务管理</h2><h3 id="systemctl"><a href="#systemctl" class="headerlink" title="systemctl"></a>systemctl</h3><ul>
+<li>启动服务：systemctl start httpd.service</li>
+<li>关闭服务：systemctl stop httpd.service</li>
+<li>重启服务（不管是否在运行）：systemctl restart httpd.service</li>
+<li>重新载入配置（不中断服务）：systemctl reload httpd.service</li>
+<li>查看运行状态：systemctl status httpd.service</li>
+<li>设置开机启动：systemctl enable httpd.service</li>
+<li>禁止开机启动：systemctl disable httpd.service</li>
+<li>查看系统安装的服务：systemctl list-units –type=service</li>
+</ul>
+<h2 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h2><h3 id="ls"><a href="#ls" class="headerlink" title="ls"></a>ls</h3><p>列出/home目录下的子目录：ls -l /home<br>列出当前文件夹下所有文件夹及文件大小：ls -lht </p>
+<h3 id="pwd"><a href="#pwd" class="headerlink" title="pwd"></a>pwd</h3><p>显示当前工作目录</p>
+<h3 id="cd"><a href="#cd" class="headerlink" title="cd"></a>cd</h3><p>切换目录： cd /usr/local</p>
+<h3 id="date"><a href="#date" class="headerlink" title="date"></a>date</h3><p>以指定格式显示日期；date ‘+date:%x time:%X’</p>
+<h3 id="passwd"><a href="#passwd" class="headerlink" title="passwd"></a>passwd</h3><p>修改root密码：passwd root</p>
+<h3 id="su"><a href="#su" class="headerlink" title="su"></a>su</h3><p>普通用户切换到超级用户：su -</p>
+<h3 id="clear"><a href="#clear" class="headerlink" title="clear"></a>clear</h3><p>清除屏幕信息</p>
+<h3 id="man"><a href="#man" class="headerlink" title="man"></a>man</h3><p>查看ls命令的帮助信息：man ls</p>
+<h3 id="who"><a href="#who" class="headerlink" title="who"></a>who</h3><ul>
+<li>查看当前运行级别：who -r</li>
+<li>显示用的登录详情：who -buT</li>
+</ul>
+<h3 id="free"><a href="#free" class="headerlink" title="free"></a>free</h3><p>以MB显示内存使用状态：free -m</p>
+<h3 id="ps"><a href="#ps" class="headerlink" title="ps"></a>ps</h3><p>查看系统所有进程：ps -ef<br>查看运行的java进程： ps -ef | grep java</p>
+<h3 id="top"><a href="#top" class="headerlink" title="top"></a>top</h3><p>查看系统当前活跃进程信息</p>
+<h3 id="mkdir"><a href="#mkdir" class="headerlink" title="mkdir"></a>mkdir</h3><p>创建目录</p>
+<h3 id="more"><a href="#more" class="headerlink" title="more"></a>more</h3><p>分页查看<br>每10行显示一屏查看：more -c -10 </p>
+<h3 id="cat"><a href="#cat" class="headerlink" title="cat"></a>cat</h3><p>查看config文件：cat -Ab config</p>
+<h3 id="rm"><a href="#rm" class="headerlink" title="rm"></a>rm</h3><ul>
+<li>删除文件：rm a.txt</li>
+<li>删除文件夹： rm -rf a/</li>
+</ul>
+<h3 id="touch"><a href="#touch" class="headerlink" title="touch"></a>touch</h3><p>创建一个文件：touch a.txt</p>
+<h3 id="cp"><a href="#cp" class="headerlink" title="cp"></a>cp</h3><p>将目录a的文件拷贝到目录b: cp -r /home/a /home/b</p>
+<h3 id="mv"><a href="#mv" class="headerlink" title="mv"></a>mv</h3><p>移动或覆盖文件：mv a.txt b.txt</p>
+<h2 id="压缩与解压"><a href="#压缩与解压" class="headerlink" title="压缩与解压"></a>压缩与解压</h2><h3 id="tar"><a href="#tar" class="headerlink" title="tar"></a>tar</h3><ul>
+<li>打包文件夹到单独的文件：tar -cvf /opt/etc.tar /etc</li>
+<li>压缩文件夹到压缩文件（gzip）：tar -zcvf /opt/etc.tar.gz /etc</li>
+<li>压缩文件夹到压缩文件（bzip2）：tar -jcvf /opt/etc.tar.bz2 /etc</li>
+<li>查阅压缩包中内容（gzip）：tar -ztvf /opt/etc.tar.gz /etc</li>
+<li>解压文件到当前目录（gzip）：tar -zxvf /opt/etc.tar.gz</li>
+</ul>
+<h2 id="磁盘和网络管理"><a href="#磁盘和网络管理" class="headerlink" title="磁盘和网络管理"></a>磁盘和网络管理</h2><h3 id="df"><a href="#df" class="headerlink" title="df"></a>df</h3><p>查看磁盘占用情况：df -hT</p>
+<h3 id="ifconfig"><a href="#ifconfig" class="headerlink" title="ifconfig"></a>ifconfig</h3><p>查看当前网络接口状态</p>
+<h3 id="netstat"><a href="#netstat" class="headerlink" title="netstat"></a>netstat</h3><ul>
+<li>查看路由信息：netstat -rn</li>
+<li>查看所有有效TCP连接：netstat -an</li>
+<li>查看系统中启动的监听服务：netstat -tulnp</li>
+<li>查看处于连接状态的系统资源信息：netstat -atunp</li>
+</ul>
+<h3 id="wget"><a href="#wget" class="headerlink" title="wget"></a>wget</h3><p>从网络上下载软件</p>
+<h2 id="软件的安装与管理"><a href="#软件的安装与管理" class="headerlink" title="软件的安装与管理"></a>软件的安装与管理</h2><h3 id="rpm"><a href="#rpm" class="headerlink" title="rpm"></a>rpm</h3><ul>
+<li>安装软件包：rpm -ivh nginx-1.12.2-2.el7.x86_64.rpm</li>
+<li>模糊搜索软件包：rpm -qa | grep nginx</li>
+<li>精确查找软件包：rpm -qa nginx</li>
+<li>查询软件包的安装路径：rpm -ql nginx-1.12.2-2.el7.x86_64</li>
+<li>查看软件包的概要信息：rpm -qi nginx-1.12.2-2.el7.x86_64</li>
+<li>验证软件包内容和安装文件是否一致：rpm -V nginx-1.12.2-2.el7.x86_64</li>
+<li>更新软件包：rpm -Uvh nginx-1.12.2-2.el7.x86_64</li>
+<li>删除软件包：rpm -e nginx-1.12.2-2.el7.x86_64</li>
+</ul>
+<h3 id="yum"><a href="#yum" class="headerlink" title="yum"></a>yum</h3><ul>
+<li>安装软件包： yum install nginx</li>
+<li>检查可以更新的软件包：yum check-update</li>
+<li>更新指定的软件包：yum update nginx</li>
+<li>在资源库中查找软件包信息：yum info nginx*</li>
+<li>列出已经安装的所有软件包：yum info installed</li>
+<li>列出软件包名称：yum list redis*</li>
+<li>模糊搜索软件包：yum search redis</li>
+</ul>
+<h2 id="网络安全"><a href="#网络安全" class="headerlink" title="网络安全"></a>网络安全</h2><h3 id="iptables"><a href="#iptables" class="headerlink" title="iptables"></a>iptables</h3><ul>
+<li>开启防火墙：systemctl start iptables.service</li>
+<li>关闭防火墙：systemctl stop iptables.service</li>
+<li>查看防火墙状态：systemctl status iptables.service</li>
+<li>设置开机启动：systemctl enable iptables.service</li>
+<li>禁用开机启动：systemctl disable iptables.service</li>
+<li>查看filter表的链信息：iptables -L -n</li>
+<li>查看NAT表的链信息：iptables -t nat -L -n</li>
+<li>清除防火墙所有规则：iptables -F;iptables -X;iptables -Z;</li>
+<li>添加过滤规则（开发80端口）：iptables -I INPUT -p tcp –dport 80 -j ACCEPT</li>
+<li>查找规则所做行号：iptables -L INPUT –line-numbers -n</li>
+<li>根据行号删除过滤规则：iptables -D INPUT 1</li>
+</ul>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://hjlinfo.top/2017/03/09/基于资源的权限管理-Resource-Based-Access-Control/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -2119,154 +2320,6 @@ Log.d(&quot;JG&quot;,Thread.currentThread().getName());
 
 
     
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-  <link itemprop="mainEntityOfPage" href="http://hjlinfo.top/2016/12/26/Android中的TouchEvent触摸事件机制/">
-
-  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
-    <meta itemprop="name" content="fastabler">
-    <meta itemprop="description" content>
-    <meta itemprop="image" content="http://fastabler.online/images/53e59d9a3ce6cf6e9c4f4a56f50553f8.jpeg">
-  </span>
-
-  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-    <meta itemprop="name" content="黄金龙的博客">
-    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
-      <img style="display:none;" itemprop="url image" alt="黄金龙的博客" src>
-    </span>
-  </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/12/26/Android中的TouchEvent触摸事件机制/" itemprop="url">
-                  Android中的TouchEvent触摸事件机制
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">发表于</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2016-12-26T19:22:32+08:00">
-                2016-12-26
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-
-          
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>当我们的手指在Android屏幕上点击或滑动时，就会触发触摸事件TouchEvent。在App中ViewGroup和View存在多级嵌套，在最外层的是Activity，最内层的View，介于Activity与View之间的是一些ViewGroup。本文为了简化讨论，我们假设一个Activity中只有一个ViewGroup，这个ViewGroup中只有一个View。当我们用手指触摸到View的UI时，就会产生触摸事件TouchEvent，总的过程如下图所示：</p>
-<p><img src="http://fastabler.online/images/20151219223049372.png" alt></p>
-<p>首先是最外层的Activity接收到该事件，触发Activity的dispatchTouchEvent的执行，在该方法中Activity又会调用内部ViewGroup的dispatchTouchEvent方法的执行，在ViewGroup的dispatchTouchEvent方法中又会调用最内层的View的dispatchTouchEvent方法的执行，在View的dispatchTouchEvent方法中可能会执行View的onTouchEvent方法，然后ViewGroup也有可能执行ViewGroup的onTouchEvent方法，然后Activity也有可能执行Activity的onTouchEvent方法的执行。</p>
-<p>上图是精简过的主要流程图，总共是两条主线：</p>
-<p>第一条主线是，从Activity -&gt; ViewGroup -&gt; View，从外向内依次调用dispatchTouchEvent方法，Android会依次把MotionEvent参数传递给该方法。dispatchTouchEvent的作用是传递触摸事件，该主线体现了将触摸事件从外向内逐级传递派发的过程，dispatchTouchEvent是每次传递触摸事件的入口。</p>
-<p>第二条主线是，从View -&gt; ViewGroup -&gt; Activity，从内向外依次调用onTouchEvent方法，Android会依次把MotionEvent参数传递给该方法。onTouchEvent的作用是处理触摸事件，该主线体现了将触摸事件从内向外逐级处理的过程。</p>
-<p>dispatchTouchEvent和onTouchEvent都接收一个MotionEvent类型的参数，MotionEvent封装了触摸事件的数据信息，包括触摸事件的类型以及坐标位置等，详见博文《Android中的MotionEvent》。dispatchTouchEvent和onTouchEvent都有一个boolean类型的返回值，如果返回true，表示当前对象已经对触摸事件进行了处理；如果返回false，表示当前对象没有对触摸事件进行处理。</p>
-<p>下面分别对Activity、ViewGroup、View的事件派发、处理的过程详细说明。</p>
-<h2 id="Activity"><a href="#Activity" class="headerlink" title="Activity"></a>Activity</h2><h3 id="dispatchTouchEvent"><a href="#dispatchTouchEvent" class="headerlink" title="dispatchTouchEvent"></a>dispatchTouchEvent</h3><p>所有在UI上的触摸操作生成的触摸事件都首先会触发Activity中dispatchTouchEvent方法的执行，其源码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">public boolean dispatchTouchEvent(MotionEvent ev) &#123;</span><br><span class="line">    if (ev.getAction() == MotionEvent.ACTION_DOWN) &#123;</span><br><span class="line">        onUserInteraction();</span><br><span class="line">    &#125;</span><br><span class="line">    if (getWindow().superDispatchTouchEvent(ev)) &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    return onTouchEvent(ev);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>上述方法的关键是，Activity会首先通过getWindow()方法获取当前的window对象，然后调用window的superDispatchTouchEvent方法，实际上，getWindow()返回的是一个PhoneWindow类型的实例，这样就会调用PhoneWindow的superDispatchTouchEvent方法，其源码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@Override</span><br><span class="line">public boolean superDispatchTouchEvent(MotionEvent event) &#123;</span><br><span class="line">    return mDecor.superDispatchTouchEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>mDecor是PhoneWindow中一个DecorView类型的变量，DecorView代表了当前Window最顶级的View，可以看做是根View。由上代码看出，后面会执行DecorView的superDispatchTouchEvent方法，其源码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">public boolean superDispatchTouchEvent(MotionEvent event) &#123;</span><br><span class="line">    return super.dispatchTouchEvent(event);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>实际上DectorView继承自FrameLayout，所以DectorView间接继承自ViewGroup，所以会DectorView执行其父类ViewGroup对应的dispatchTouchEvent方法。在该方法中，DectorView会找到其触摸的子节点，实际上其子节点也是一个ViewGroup，然后再执行该ViewGroup的dispatchTouchEvent方法，这样就实现了将触摸事件参数MotionEvent从Activity中传入到DecorView的子ViewGroup中了。我们会在后面探讨ViewGroup中的dispatchTouchEvent方法中的执行逻辑，此处就不再过多介绍了。</p>
-<p>以上介绍了借助superDispatchTouchEvent和dispatchTouchEvent方法将触摸事件从Activity到ViewGroup中的传递过程，这两个方法均返回一个boolean类型的参数，如果返回true，表示触摸事件被处理了，反之表示触摸事件没有被处理。我们再看一下上面Activity中dispatchTouchEvent的源码，就会发现如果PhoneWindow的superDispatchTouchEvent返回了true，那么Activity的dispatchTouchEvent方法也就直接返回了true，表明触摸事件被Window给处理了，所以就不会执行后面Activity的 onTouchEvent方法。只有Window没处理触摸事件的情况下，Activity才会调用onTouchEvent方法去处理事件。</p>
-<h3 id="onTouchEvent"><a href="#onTouchEvent" class="headerlink" title="onTouchEvent"></a>onTouchEvent</h3><p>onTouchEvent的源码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">public boolean onTouchEvent(MotionEvent event) &#123;</span><br><span class="line">    if (mWindow.shouldCloseOnTouch(this, event)) &#123;</span><br><span class="line">        finish();</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return false;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>只有当触摸事件没有被任何的View或ViewGroup处理过的时候，Activity才会执行自己的onTouchEvent去处理触摸事件。一种典型的情形就是，当前触摸点在Window范围之外，这样Window里面所有的View都不会接收更不会处理该触摸事件，这时候我们可以重写该方法实现一些自己的逻辑处理这种情形。如果我们处理了，就返回true，否则返回false。其默认实现基本一直返回false。</p>
-<h2 id="ViewGroup"><a href="#ViewGroup" class="headerlink" title="ViewGroup"></a>ViewGroup</h2><h3 id="dispatchTouchEvent-1"><a href="#dispatchTouchEvent-1" class="headerlink" title="dispatchTouchEvent"></a>dispatchTouchEvent</h3><p>当Activity接收到触摸事件之后，会通过DectorView调用ViewGroup的dispatchTouchEvent方法，由于该方法的源码太长，此处就不贴源码了，点此查看其源码。此处主要说一下该方法中的主要逻辑。dispatchTouchEvent方法是ViewGroup对触摸事件进行处理的入口。</p>
-<p>ViewGroup中定义了一个TouchTarget类型的成员变量mFirstTouchTarget，用于保存当前ViewGroup中处理了触摸事件的子View。</p>
-<p>首先，dispatchTouchEvent方法会调用其自身的onInterceptTouchEvent方法，onInterceptTouchEvent是用来拦截ViewGroup将触摸事件传递给其子View的，如果该方法返回true，就表示ViewGroup应该拦截触摸事件；如果返回false，表示ViewGroup不应该拦截触摸事件，应该将触摸事件传递给子View。在dispathTouchEvent方法中还定义了一个boolean类型的handled变量，用于保存dispathTouchEvent方法的返回值，如果是true就表示触摸事件被当前的ViewGroup处理了，反之则表示没被处理。</p>
-<p>然后，只有当onInterceptTouchEvent返回了false，ViewGroup才会依次遍历其子View，其会通过调用isTransformedTouchPointInView方法判断MotionEvent所携带的触摸事件的坐标是否落在子View的范围内，如果触摸事件的坐标恰好落在了该子View范围内，说明我们触摸了当前ViewGroup内的该子View，这样ViewGroup就会把触摸事件的坐标以及该子View传递给dispatchTransformedTouchEvent方法，在该方法内会调用子View的dispatchTouchEvent方法，其返回值表示自View是否处理了触摸事件，如果dispatchTransformedTouchEvent返回true，表示子View处理了触摸事件，这样ViewGroup会通过调用addTouchTarget方法将mFirstTouchTarget绑定该子View，并且变量alreadyDispatchedToNewTouchTarget也会设置为true，表示已经有子View处理了触摸事件。一旦有子View处理了触摸事件，ViewGroup就会通过break跳出for循环，不再对其他子View进行遍历。</p>
-<p>在经过了对子View的for循环之后，如果没有任何的子View处理了触摸事件，那么mFirstTouchTarget就还是null，此时ViewGroup就会将null作为child参数传入dispatchTransformedTouchEvent方法中，该方法会调用super.dispatchTouchEvent方法，由于ViewGroup继承自View，以此处就相当于执行了View类中的dispatchTouchEvent方法，这样就很有可能执行ViewGroup从View中继承来的onTouchEvent方法。dispatchTransformedTouchEvent的返回值会作为局部变量handled的值。关于View类中的dispatchTouchEvent方法会在下面详细说明。</p>
-<p>在经过了对子View的for循环之后，如果发现某个子View对触摸事件进行了处理，那么alreadyDispatchedToNewTouchTarget就是true，从而会将局部变量handled设置为true，即表示只要有子View处理了触摸事件，就表示当前的ViewGroup也处理了触摸事件，并且这种情况下ViewGroup不会调用从View中继承来的dispatchTouchEvent方法，从而不会触发ViewGroup的onTouchEvent方法的执行。</p>
-<h3 id="onInterceptTouchEvent"><a href="#onInterceptTouchEvent" class="headerlink" title="onInterceptTouchEvent"></a>onInterceptTouchEvent</h3><p>之前提到过onInterceptTouchEvent用于拦截ViewGroup向子View传递触摸事件，ViewGroup中的默认实现一直返回false，即表示不拦截。我们可以重写该方法以实现我们自己的触摸事件拦截逻辑。</p>
-<p>dispatchTransformedTouchEvent<br>点此查看源码，其主要的逻辑代码如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">private boolean dispatchTransformedTouchEvent(MotionEvent event, boolean cancel,</span><br><span class="line">        View child, int desiredPointerIdBits) &#123;</span><br><span class="line"></span><br><span class="line">  final boolean handled;</span><br><span class="line"></span><br><span class="line">  final MotionEvent transformedEvent;</span><br><span class="line"></span><br><span class="line">  ......        </span><br><span class="line"></span><br><span class="line">    // Perform any necessary transformations and dispatch.</span><br><span class="line">    if (child == null) &#123;</span><br><span class="line">        handled = super.dispatchTouchEvent(transformedEvent);</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        final float offsetX = mScrollX - child.mLeft;</span><br><span class="line">        final float offsetY = mScrollY - child.mTop;</span><br><span class="line">        transformedEvent.offsetLocation(offsetX, offsetY);</span><br><span class="line">        if (! child.hasIdentityMatrix()) &#123;</span><br><span class="line">            transformedEvent.transform(child.getInverseMatrix());</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        handled = child.dispatchTouchEvent(transformedEvent);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    // Done.</span><br><span class="line">    transformedEvent.recycle();</span><br><span class="line">    return handled;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>该方法的主要目的是将MotionEvent中的x、y的坐标转换成所传入的child变量所指定的的View的坐标系中的坐标，transformedEvent表示了已经完成了指定坐标系转换的MotionEvent。如果传入的child参数是null，表示传入的是当前的ViewGroup，此时就将直接调用super.dispatchTouchEvent(transformedEvent)，这样就让ViewGroup调用了父类View中的dispatchTouchEvent方法；如果传入的child参数不是null，表示传入的当前ViewGroup的一个子View，那么就会调用child.dispatchTouchEvent(transformedEvent)，从而将触摸事件从ViewGroup传递到子View中去。我们会在下面介绍View的dispatchTouchEvent的实现逻辑。</p>
-<h3 id="onTouchEvent-1"><a href="#onTouchEvent-1" class="headerlink" title="onTouchEvent"></a>onTouchEvent</h3><p>ViewGroup的onTouchEvent继承自View的onTouchEvent方法，ViewGroup并没有重写，我们在下面会介绍View的onTouchEvent方法的实现逻辑。</p>
-<h2 id="View"><a href="#View" class="headerlink" title="View"></a>View</h2><h2 id="dispatchTouchEvent-2"><a href="#dispatchTouchEvent-2" class="headerlink" title="dispatchTouchEvent"></a>dispatchTouchEvent</h2><p>点此查看源码，其源码的主要逻辑如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">public boolean dispatchTouchEvent(MotionEvent event) &#123;</span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">    boolean result = false;</span><br><span class="line"></span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">    if (onFilterTouchEventForSecurity(event)) &#123;</span><br><span class="line">        //noinspection SimplifiableIfStatement</span><br><span class="line">        ListenerInfo li = mListenerInfo;</span><br><span class="line">        //如果设置了OnTouchListener，那么会在此处执行OnTouchListener的onTouch方法</span><br><span class="line">        if (li != null &amp;&amp; li.mOnTouchListener != null</span><br><span class="line">                &amp;&amp; (mViewFlags &amp; ENABLED_MASK) == ENABLED</span><br><span class="line">                &amp;&amp; li.mOnTouchListener.onTouch(this, event)) &#123;</span><br><span class="line">            //如果OnTouchListener的onTouch方法返回true，就表示触摸事件被处理了，result就会设置为true</span><br><span class="line">            result = true;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        //如果触摸事件没有被OnTouchListener处理，那么就会执行View的onTouchEvent方法</span><br><span class="line">        if (!result &amp;&amp; onTouchEvent(event)) &#123;</span><br><span class="line">            //如果onTouchEvent返回了true，就表示触摸事件被View处理了，result就被设置为了true</span><br><span class="line">            result = true;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ......</span><br><span class="line"></span><br><span class="line">    return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>dispatchTouchEvent是View处理触摸事件的入口。在该方法中，View首先会查看其有没有设置过OnTouchListener，如果设置过就调用OnTouchListener的onTouch方法，如果其返回了true，就表明触摸事件被处理了，result就会设置为true。如果触摸事件没有被OnTouchListener处理，那么就会执行View的onTouchEvent方法，如果onTouchEvent返回了true，就表示触摸事件被View处理了，result就被设置为了true。</p>
-<p>由上可以看出，在dispatchTouchEvent方法中是先执行OnTouchListener的onTouch方法，一旦其返回true，就不会调用View自身的onTouchEvent方法了，只有OnTouchListener没有处理触摸事件才会在后面执行View的onTouchEvent方法。</p>
-<h3 id="onTouchEvent-2"><a href="#onTouchEvent-2" class="headerlink" title="onTouchEvent"></a>onTouchEvent</h3><p>点此查看源码，View.onTouchEvent()方法中，如果View注册了CLICK或LONG_CLICK等事件监听器，那么就会让注册的事件监听器处理触摸事件，这样onTouchEvent就返回true。会根据ACTION的不同，执行不同的处理，比如如果是ACTION_UP，会执行performClick()方法，该方法会触发OnClickListener.onClick()的执行。<br>如果View没有注册任何的CLICK或LONG_CLICK等的事件监听器，那么onTouchEvent就返回false，表示onTouchEvent没有对传入的触摸事件MotionEvent做任何处理。</p>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>我们通过对上面Activity、ViewGroup、View各个层级对触摸事件的处理过程可以发现，Android中每个层级对触摸事件的处理都是从dispatchTouchEvent方法开始的，首先先调用下一层级的dispatchTouchEvent方法，将触摸事件传递给下一层级，如果下一层级对触摸事件进行了处理，就可认为本层级也对触摸事件进行了处理，那么本层级就不会对触摸事件仅需做其他特殊处理了；如果下一层级没有对触摸事件进行处理，即下一层级的dispatchTouchEvent方法返回false，那么才会调用本层级的onTouchEvent方法对触摸事件进行处理。</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -2312,7 +2365,7 @@ Log.d(&quot;JG&quot;,Thread.currentThread().getName());
           
             <div class="site-state-item site-state-posts">
               <a href="/archives">
-                <span class="site-state-item-count">15</span>
+                <span class="site-state-item-count">16</span>
                 <span class="site-state-item-name">日志</span>
               </a>
             </div>
@@ -2323,7 +2376,7 @@ Log.d(&quot;JG&quot;,Thread.currentThread().getName());
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-count">9</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
